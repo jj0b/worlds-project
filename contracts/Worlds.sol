@@ -1414,7 +1414,7 @@ abstract contract ERC721Enumerable is ERC721, IERC721Enumerable {
 }
 
 contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
-    uint8[] private numberOfPlanets = [
+    uint8[] private numberOfWorlds = [
         5,
         5,
         5,
@@ -1446,7 +1446,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
         9
     ];
 
-    string[] private numberStrings = [
+    string[] private numberToString = [
         "ZERO",
         "ONE",
         "TWO",
@@ -1459,104 +1459,75 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
         "NINE"
     ];
 
-    string[] private worlds = [
-        "Inhabited Small Ice Planet H2O",
-        "Inhabited Medium Ice Planet H2O",
-        "Inhabited Large Ice Planet H2O",
-        "Abandoned Small Ice Planet H2O",
-        "Abandoned Medium Ice Planet H2O",
-        "Abandoned Large Ice Planet H2O",
-        "Small Ice Planet H2O",
-        "Medium Ice Planet H2O",
-        "Large Ice Planet H2O",
-        "Small Ice Planet H2O",
-        "Medium Ice Planet H2O",
-        "Large Ice Planet H2O",
-        "Small Ice Planet CO2 NH3",
-        "Medium Ice Planet CO2 NH3",
-        "Large Ice Planet CO2 NH3",
-        "Small Ice Planet CH4",
-        "Medium Ice Planet CH4",
-        "Large Ice Planet CH4",
+    string[] private worldTypes = [
+        "TERRESTRIAL",
+        "OCEAN",
+        "ICE",
+        "GAS",
+        "RARE",
+        "RARER",
+        "RAREST"
+    ];
+
+    string[] private terrestrialWorlds = [
+        "Small Hot Terrestrial",
+        "Small Temperate Terrestrial",
+        "Small Cool Terrestrial",
+        "Medium Hot Terrestrial",
+        "Medium Temperate Terrestrial",
+        "Medium Cool Terrestrial",
+        "Large Hot Terrestrial",
+        "Large Temperate Terrestrial",
+        "Large Cool Terrestrial"
+    ];
+
+    string[] private oceanWorlds = [
+        "Small H2O Ocean World",
+        "Medium H2O Ocean World",
+        "Large H2O Ocean World"
+    ];
+
+    string[] private iceWorlds = [
+        "Small H2O Ice Planet ",
+        "Medium H2O Ice Planet ",
+        "Large H2O Ice Planet ",
+        "Small CO2 NH3 Ice Planet ",
+        "Medium CO2 NH3 Ice Planet ",
+        "Large CO2 NH3 Ice Planet ",
+        "Small CH4 Ice Planet ",
+        "Medium CH4 Ice Planet ",
+        "Large CH4 Ice Planet "
+    ];
+
+    string[] private gasWorlds = [
         "Small Type I Gas Giant",
         "Medium Type I Gas Giant",
         "Large Type I Gas Giant",
+        "Massive Type I Gas Giant",
+        "Super Massive Type I Gas Giant",
         "Small Type II Gas Giant",
         "Medium Type II Gas Giant",
         "Large Type II Gas Giant",
+        "Massive Type II Gas Giant",
+        "Super Massive Type II Gas Giant",
         "Small Type III Gas Giant",
         "Medium Type III Gas Giant",
         "Large Type III Gas Giant",
+        "Massive Type III Gas Giant",
+        "Super Massive Type III Gas Giant",
         "Small Type IV Gas Giant",
         "Medium Type IV Gas Giant",
         "Large Type IV Gas Giant",
+        "Massive Type IV Gas Giant",
+        "Super Massive Type IV Gas Giant",
         "Small Type V Gas Giant",
         "Medium Type V Gas Giant",
         "Large Type V Gas Giant",
-        "Inhabited Small Ocean World",
-        "Inhabited Medium Ocean World",
-        "Inhabited Large Ocean World",
-        "Abandoned Small Ocean World",
-        "Abandoned Medium Ocean World",
-        "Abandoned Large Ocean World",
-        "Small Ocean World",
-        "Medium Ocean World",
-        "Large Ocean World",
-        "Small Ocean World",
-        "Medium Ocean World",
-        "Large Ocean World",
-        "Inhabited Small Hot Terrestrial",
-        "Inhabited Small Temperate Terrestrial",
-        "Inhabited Small Cool Terrestrial",
-        "Inhabited Medium Hot Terrestrial",
-        "Inhabited Medium Temperate Terrestrial",
-        "Inhabited Medium Cool Terrestrial",
-        "Inhabited Large Hot Terrestrial",
-        "Inhabited Large Temperate Terrestrial",
-        "Inhabited Large Cool Terrestrial",
-        "Abandoned Small Hot Terrestrial",
-        "Abandoned Small Temperate Terrestrial",
-        "Abandoned Small Cool Terrestrial",
-        "Abandoned Medium Hot Terrestrial",
-        "Abandoned Medium Temperate Terrestrial",
-        "Abandoned Medium Cool Terrestrial",
-        "Abandoned Large Hot Terrestrial",
-        "Abandoned Large Temperate Terrestrial",
-        "Abandoned Large Cool Terrestrial",
-        "Small Hot Terrestrial",
-        "Small Temperate Terrestrial",
-        "Small Cool Terrestrial",
-        "Medium Hot Terrestrial",
-        "Medium Temperate Terrestrial",
-        "Medium Cool Terrestrial",
-        "Large Hot Terrestrial",
-        "Large Temperate Terrestrial",
-        "Large Cool Terrestrial",
-        "Small Hot Terrestrial",
-        "Small Temperate Terrestrial",
-        "Small Cool Terrestrial",
-        "Medium Hot Terrestrial",
-        "Medium Temperate Terrestrial",
-        "Medium Cool Terrestrial",
-        "Large Hot Terrestrial",
-        "Large Temperate Terrestrial",
-        "Large Cool Terrestrial",
-        "RARE"
+        "Massive Type V Gas Giant",
+        "Super Massive Type V Gas Giant"
     ];
 
     string[] private rareWorlds = [
-        "Inhabited Small Ice Planet CO2 NH3",
-        "Inhabited Medium Ice Planet CO2 NH3",
-        "Inhabited Large Ice Planet CO2 NH3",
-        "Abandoned Small Ice Planet CO2 NH3",
-        "Abandoned Medium Ice Planet CO2 NH3",
-        "Abandoned Large Ice Planet CO2 NH3",
-        "Inhabited Small Ice Planet CH4",
-        "Inhabited Small Ice Planet CH4",
-        "Inhabited Small Ice Planet CH4",
-        "Abandoned Small Ice Planet CH4",
-        "Abandoned Small Ice Planet CH4",
-        "Abandoned Small Ice Planet CH4",
         "Small Lava Planet",
         "Medium Lava Planet",
         "Large Lava Planet",
@@ -1566,106 +1537,25 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
         "Small Desert Planet",
         "Medium Desert Planet",
         "Large Desert Planet",
-        "Massive Type I Gas Giant",
-        "Massive Type II Gas Giant",
-        "Massive Type III Gas Giant",
-        "Massive Type IV Gas Giant",
-        "Massive Type V Gas Giant",
-        "Super Massive Type I Gas Giant",
-        "Super Massive Type II Gas Giant",
-        "Super Massive Type III Gas Giant",
-        "Super Massive Type IV Gas Giant",
-        "Super Massive Type V Gas Giant",
-        "RARER"
+        "Small Hydrocarbon Ocean World",
+        "Medium Hydrocarbon Ocean World",
+        "Large Hydrocarbon Ocean World"
     ];
 
     string[] private rarerWorlds = [
-        "Inhabited Small Chthonian World",
-        "Inhabited Medium Chthonian World",
-        "Inhabited Large Chthonian World",
-        "Inhabited Small Desert Planet",
-        "Inhabited Medium Desert Planet",
-        "Inhabited Large Desert Planet",
-        "Inhabited Small Type I Gas Giant",
-        "Inhabited Small Type II Gas Giant",
-        "Inhabited Small Type III Gas Giant",
-        "Inhabited Small Type IV Gas Giant",
-        "Inhabited Small Type V Gas Giant",
-        "Inhabited Medium Type I Gas Giant",
-        "Inhabited Medium Type II Gas Giant",
-        "Inhabited Medium Type III Gas Giant",
-        "Inhabited Medium Type IV Gas Giant",
-        "Inhabited Medium Type V Gas Giant",
-        "Inhabited Large Type I Gas Giant",
-        "Inhabited Large Type II Gas Giant",
-        "Inhabited Large Type III Gas Giant",
-        "Inhabited Large Type IV Gas Giant",
-        "Inhabited Large Type V Gas Giant",
-        "Inhabited Massive Type I Gas Giant",
-        "Inhabited Massive Type II Gas Giant",
-        "Inhabited Massive Type III Gas Giant",
-        "Inhabited Massive Type IV Gas Giant",
-        "Inhabited Massive Type V Gas Giant",
-        "Inhabited Super Massive Type I Gas Giant",
-        "Inhabited Super Massive Type II Gas Giant",
-        "Inhabited Super Massive Type III Gas Giant",
-        "Inhabited Super Massive Type IV Gas Giant",
-        "Inhabited Super Massive Type V Gas Giant",
-        "Abandoned Small Chthonian World",
-        "Abandoned Medium Chthonian World",
-        "Abandoned Large Chthonian World",
-        "Abandoned Small Desert Planet",
-        "Abandoned Medium Desert Planet",
-        "Abandoned Large Desert Planet",
-        "Abandoned Small Type I Gas Giant",
-        "Abandoned Small Type II Gas Giant",
-        "Abandoned Small Type III Gas Giant",
-        "Abandoned Small Type IV Gas Giant",
-        "Abandoned Small Type V Gas Giant",
-        "Abandoned Medium Type I Gas Giant",
-        "Abandoned Medium Type II Gas Giant",
-        "Abandoned Medium Type III Gas Giant",
-        "Abandoned Medium Type IV Gas Giant",
-        "Abandoned Medium Type V Gas Giant",
-        "Abandoned Large Type I Gas Giant",
-        "Abandoned Large Type II Gas Giant",
-        "Abandoned Large Type III Gas Giant",
-        "Abandoned Large Type IV Gas Giant",
-        "Abandoned Large Type V Gas Giant",
-        "Abandoned Massive Type I Gas Giant",
-        "Abandoned Massive Type II Gas Giant",
-        "Abandoned Massive Type III Gas Giant",
-        "Abandoned Massive Type IV Gas Giant",
-        "Abandoned Massive Type V Gas Giant",
-        "Abandoned Super Massive Type I Gas Giant",
-        "Abandoned Super Massive Type II Gas Giant",
-        "Abandoned Super Massive Type III Gas Giant",
-        "Abandoned Super Massive Type IV Gas Giant",
-        "Abandoned Super Massive Type V Gas Giant",
-        "Abandoned Small Orbital Sphere",
-        "Abandoned Small Orbital Ring",
-        "Abandoned Medium Orbital Sphere",
-        "Abandoned Medium Orbital Ring",
-        "Abandoned Large Orbital Sphere",
-        "Abandoned Large Orbital Ring",
-        "Inhabited Small Orbital Sphere",
-        "Inhabited Small Orbital Ring",
-        "Inhabited Medium Orbital Sphere",
-        "Inhabited Medium Orbital Ring",
-        "Inhabited Large Orbital Sphere",
-        "Inhabited Large Orbital Ring",
-        "RAREST"
+        "Small Orbital Sphere",
+        "Medium Orbital Sphere",
+        "Large Orbital Sphere",
+        "Small Orbital Ring",
+        "Medium Orbital Ring",
+        "Large Orbital Ring"
     ];
 
     string[] private rarestWorlds = [
-        "Abandoned Small Shellworld",
-        "Abandoned Medium Shellworld",
-        "Abandoned Large Shellworld",
-        "Inhabited Small Shellworld",
-        "Inhabited Medium Shellworld",
-        "Inhabited Large Shellworld",
-        "Abandoned Dyson Sphere",
-        "Inhabited Dyson Sphere"
+        "Small Shellworld",
+        "Medium Shellworld",
+        "Large Shellworld",
+        "Dyson Sphere"
     ];
 
     function random(string memory input) internal pure returns (uint256) {
@@ -1685,38 +1575,92 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
         return string(abi.encodePacked("SN-", systemNumber));
     }
 
-    function getNumberOfPlanets(uint256 tokenId) public view returns (uint8) {
+    function getNumberOfWorlds(uint256 tokenId) public view returns (uint8) {
         uint256 rand = random(
-            string(abi.encodePacked("NUMBER_OF_PLANETS", toString(tokenId)))
+            string(abi.encodePacked("NUMBER_OF_WORLDS", toString(tokenId)))
         );
-        uint8 output = numberOfPlanets[rand % numberOfPlanets.length];
-        return output;
+        uint8 numWorlds = numberOfWorlds[rand % numberOfWorlds.length];
+
+        return numWorlds;
     }
 
-    function getPlanets(uint256 tokenId) public view returns (string[] memory) {
-        uint8 numPlanets = getNumberOfPlanets(tokenId);
+    function getWorld(
+        uint256 tokenId,
+        uint256 worldNumberIndex,
+        uint256 worldTypeIndex,
+        string[] memory sourceArray,
+        uint256 inhabitedThreshold,
+        uint256 abandonedThreshold
+    ) public view returns (string memory) {
+        uint256 rand = random(
+            string(
+                abi.encodePacked(
+                    worldTypes[worldTypeIndex],
+                    toString(tokenId),
+                    numberToString[worldNumberIndex],
+                    toString(inhabitedThreshold),
+                    toString(abandonedThreshold)
+                )
+            )
+        );
 
-        string[] memory planets = new string[](numPlanets);
+        string memory world = sourceArray[rand % sourceArray.length];
 
-        for (uint256 i = 0; i < numPlanets; i++) {
+        uint256 chance = rand % 101;
+
+        if (chance < inhabitedThreshold) {
+            world = string(abi.encodePacked("Inhabited ", world));
+        } else if (chance < abandonedThreshold) {
+            world = string(abi.encodePacked("Abandoned ", world));
+        }
+
+        return world;
+    }
+
+    function getWorlds(uint256 tokenId) public view returns (string[] memory) {
+        uint8 numWorlds = getNumberOfWorlds(tokenId);
+
+        string[] memory worlds = new string[](numWorlds);
+
+        for (uint256 worldIndex = 0; worldIndex < numWorlds; worldIndex++) {
             uint256 rand = random(
-                string(abi.encodePacked(numberStrings[i], toString(tokenId)))
+                string(
+                    abi.encodePacked(
+                        numberToString[worldIndex],
+                        toString(tokenId)
+                    )
+                )
             );
-            string memory planet = worlds[rand % worlds.length];
-            if (keccak256(bytes(planet)) == keccak256(bytes("RARE"))) {
-                planet = rareWorlds[rand % rareWorlds.length];
-                if (keccak256(bytes(planet)) == keccak256(bytes("RARER"))) {
-                    planet = rarestWorlds[rand % rarerWorlds.length];
-                    if (
-                        keccak256(bytes(planet)) == keccak256(bytes("RAREST"))
-                    ) {
-                        planet = rarestWorlds[rand % rarestWorlds.length];
-                    }
-                }
+
+            uint256 chance = rand % 101;
+
+            string memory world;
+
+            if (chance < 33) {
+                world = getWorld(
+                    tokenId,
+                    worldIndex,
+                    0,
+                    terrestrialWorlds,
+                    41,
+                    61
+                );
+            } else if (chance < 46) {
+                world = getWorld(tokenId, worldIndex, 1, oceanWorlds, 21, 31);
+            } else if (chance < 63) {
+                world = getWorld(tokenId, worldIndex, 2, iceWorlds, 9, 17);
+            } else if (chance < 93) {
+                world = getWorld(tokenId, worldIndex, 3, gasWorlds, 3, 4);
+            } else if (chance < 97) {
+                world = getWorld(tokenId, worldIndex, 4, rareWorlds, 7, 19);
+            } else if (chance < 100) {
+                world = getWorld(tokenId, worldIndex, 5, rarerWorlds, 71, 101);
+            } else if (chance == 100) {
+                world = getWorld(tokenId, worldIndex, 6, rarestWorlds, 71, 101);
             }
 
             if (
-                keccak256(bytes(planet)) ==
+                keccak256(bytes(world)) ==
                 keccak256(bytes("Abandoned Dyson Sphere"))
             ) {
                 string[] memory onlyDyson = new string[](1);
@@ -1725,7 +1669,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
             }
 
             if (
-                keccak256(bytes(planet)) ==
+                keccak256(bytes(world)) ==
                 keccak256(bytes("Inhabited Dyson Sphere"))
             ) {
                 string[] memory onlyDyson = new string[](1);
@@ -1733,10 +1677,10 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
                 return onlyDyson;
             }
 
-            planets[i] = planet;
+            worlds[worldIndex] = world;
         }
 
-        return planets;
+        return worlds;
     }
 
     function tokenURI(uint256 tokenId)
@@ -1745,7 +1689,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
         override
         returns (string memory)
     {
-        string[] memory planets = getPlanets(tokenId);
+        string[] memory worlds = getWorlds(tokenId);
 
         string[2] memory parts;
 
@@ -1764,12 +1708,12 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
 
         string memory output = string(abi.encodePacked(parts[0], parts[1]));
 
-        for (uint8 i = 0; i < planets.length; i++) {
-            string memory planet = planets[i];
+        for (uint8 i = 0; i < worlds.length; i++) {
+            string memory world = worlds[i];
             uint256 multiplier = i + 3;
             uint256 yValue = 20 * multiplier;
             string memory yString = toString(yValue);
-            string memory closing = (i != (planets.length - 1))
+            string memory closing = (i != (worlds.length - 1))
                 ? string(
                     abi.encodePacked(
                         '</text><text x="10" y="',
@@ -1778,7 +1722,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
                     )
                 )
                 : "</text></svg>";
-            string memory line = string(abi.encodePacked(planet, closing));
+            string memory line = string(abi.encodePacked(world, closing));
             output = string(abi.encodePacked(output, line));
         }
 
