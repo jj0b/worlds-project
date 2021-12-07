@@ -1732,7 +1732,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
                     abi.encodePacked(
                         '{"name": "World #',
                         toString(tokenId),
-                        '", "description": "Worlds is gate connected, randomly generated, (mostly) inhabited, planetary star systems created and stored on chain. Stats, images, and other functionality are intentionally omitted for others to interpret. Feel free to use Worlds in any way you want.", "image": "data:image/svg+xml;base64,',
+                        '", "description": "Worlds is randomly generated, often inhabited, or once inhabited, planetary star systems created and stored on chain. Stats, images, and other functionality are intentionally omitted for others to interpret. Feel free to use Worlds in any way you want.", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(output)),
                         '"}'
                     )
