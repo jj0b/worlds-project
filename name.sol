@@ -1,6 +1,6 @@
 /**
  *Submitted for verification at Etherscan.io on 2021-08-27
- */
+*/
 
 // SPDX-License-Identifier: MIT
 
@@ -27,6 +27,11 @@ interface IERC165 {
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
 }
 
+
+
+
+
+
 /**
  * @dev Required interface of an ERC721 compliant contract.
  */
@@ -34,29 +39,17 @@ interface IERC721 is IERC165 {
     /**
      * @dev Emitted when `tokenId` token is transferred from `from` to `to`.
      */
-    event Transfer(
-        address indexed from,
-        address indexed to,
-        uint256 indexed tokenId
-    );
+    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
 
     /**
      * @dev Emitted when `owner` enables `approved` to manage the `tokenId` token.
      */
-    event Approval(
-        address indexed owner,
-        address indexed approved,
-        uint256 indexed tokenId
-    );
+    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
 
     /**
      * @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.
      */
-    event ApprovalForAll(
-        address indexed owner,
-        address indexed operator,
-        bool approved
-    );
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
     /**
      * @dev Returns the number of tokens in ``owner``'s account.
@@ -134,10 +127,7 @@ interface IERC721 is IERC165 {
      *
      * - `tokenId` must exist.
      */
-    function getApproved(uint256 tokenId)
-        external
-        view
-        returns (address operator);
+    function getApproved(uint256 tokenId) external view returns (address operator);
 
     /**
      * @dev Approve or remove `operator` as an operator for the caller.
@@ -156,10 +146,7 @@ interface IERC721 is IERC165 {
      *
      * See {setApprovalForAll}
      */
-    function isApprovedForAll(address owner, address operator)
-        external
-        view
-        returns (bool);
+    function isApprovedForAll(address owner, address operator) external view returns (bool);
 
     /**
      * @dev Safely transfers `tokenId` token from `from` to `to`.
@@ -181,6 +168,9 @@ interface IERC721 is IERC165 {
         bytes calldata data
     ) external;
 }
+
+
+
 
 /**
  * @dev String operations.
@@ -232,11 +222,7 @@ library Strings {
     /**
      * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length.
      */
-    function toHexString(uint256 value, uint256 length)
-        internal
-        pure
-        returns (string memory)
-    {
+    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {
         bytes memory buffer = new bytes(2 * length + 2);
         buffer[0] = "0";
         buffer[1] = "x";
@@ -248,6 +234,9 @@ library Strings {
         return string(buffer);
     }
 }
+
+
+
 
 /*
  * @dev Provides information about the current execution context, including the
@@ -269,6 +258,14 @@ abstract contract Context {
     }
 }
 
+
+
+
+
+
+
+
+
 /**
  * @dev Contract module which provides a basic access control mechanism, where
  * there is an account (an owner) that can be granted exclusive access to
@@ -284,10 +281,7 @@ abstract contract Context {
 abstract contract Ownable is Context {
     address private _owner;
 
-    event OwnershipTransferred(
-        address indexed previousOwner,
-        address indexed newOwner
-    );
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
@@ -327,10 +321,7 @@ abstract contract Ownable is Context {
      * Can only be called by the current owner.
      */
     function transferOwnership(address newOwner) public virtual onlyOwner {
-        require(
-            newOwner != address(0),
-            "Ownable: new owner is the zero address"
-        );
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
         _setOwner(newOwner);
     }
 
@@ -340,6 +331,10 @@ abstract contract Ownable is Context {
         emit OwnershipTransferred(oldOwner, newOwner);
     }
 }
+
+
+
+
 
 /**
  * @dev Contract module that helps prevent reentrant calls to a function.
@@ -400,6 +395,19 @@ abstract contract ReentrancyGuard {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * @title ERC721 token receiver interface
  * @dev Interface for any contract that wants to support safeTransfers
@@ -423,6 +431,12 @@ interface IERC721Receiver {
     ) external returns (bytes4);
 }
 
+
+
+
+
+
+
 /**
  * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
@@ -443,6 +457,10 @@ interface IERC721Metadata is IERC721 {
      */
     function tokenURI(uint256 tokenId) external view returns (string memory);
 }
+
+
+
+
 
 /**
  * @dev Collection of functions related to the address type
@@ -494,16 +512,10 @@ library Address {
      * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
      */
     function sendValue(address payable recipient, uint256 amount) internal {
-        require(
-            address(this).balance >= amount,
-            "Address: insufficient balance"
-        );
+        require(address(this).balance >= amount, "Address: insufficient balance");
 
         (bool success, ) = recipient.call{value: amount}("");
-        require(
-            success,
-            "Address: unable to send value, recipient may have reverted"
-        );
+        require(success, "Address: unable to send value, recipient may have reverted");
     }
 
     /**
@@ -524,10 +536,7 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCall(address target, bytes memory data)
-        internal
-        returns (bytes memory)
-    {
+    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
         return functionCall(target, data, "Address: low-level call failed");
     }
 
@@ -561,13 +570,7 @@ library Address {
         bytes memory data,
         uint256 value
     ) internal returns (bytes memory) {
-        return
-            functionCallWithValue(
-                target,
-                data,
-                value,
-                "Address: low-level call with value failed"
-            );
+        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
     }
 
     /**
@@ -582,15 +585,10 @@ library Address {
         uint256 value,
         string memory errorMessage
     ) internal returns (bytes memory) {
-        require(
-            address(this).balance >= value,
-            "Address: insufficient balance for call"
-        );
+        require(address(this).balance >= value, "Address: insufficient balance for call");
         require(isContract(target), "Address: call to non-contract");
 
-        (bool success, bytes memory returndata) = target.call{value: value}(
-            data
-        );
+        (bool success, bytes memory returndata) = target.call{value: value}(data);
         return _verifyCallResult(success, returndata, errorMessage);
     }
 
@@ -600,17 +598,8 @@ library Address {
      *
      * _Available since v3.3._
      */
-    function functionStaticCall(address target, bytes memory data)
-        internal
-        view
-        returns (bytes memory)
-    {
-        return
-            functionStaticCall(
-                target,
-                data,
-                "Address: low-level static call failed"
-            );
+    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {
+        return functionStaticCall(target, data, "Address: low-level static call failed");
     }
 
     /**
@@ -636,16 +625,8 @@ library Address {
      *
      * _Available since v3.4._
      */
-    function functionDelegateCall(address target, bytes memory data)
-        internal
-        returns (bytes memory)
-    {
-        return
-            functionDelegateCall(
-                target,
-                data,
-                "Address: low-level delegate call failed"
-            );
+    function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
+        return functionDelegateCall(target, data, "Address: low-level delegate call failed");
     }
 
     /**
@@ -688,6 +669,14 @@ library Address {
     }
 }
 
+
+
+
+
+
+
+
+
 /**
  * @dev Implementation of the {IERC165} interface.
  *
@@ -706,16 +695,11 @@ abstract contract ERC165 is IERC165 {
     /**
      * @dev See {IERC165-supportsInterface}.
      */
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override
-        returns (bool)
-    {
+    function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
         return interfaceId == type(IERC165).interfaceId;
     }
 }
+
 
 /**
  * @dev Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard, including
@@ -755,13 +739,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC165-supportsInterface}.
      */
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override(ERC165, IERC165)
-        returns (bool)
-    {
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
         return
             interfaceId == type(IERC721).interfaceId ||
             interfaceId == type(IERC721Metadata).interfaceId ||
@@ -771,35 +749,17 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-balanceOf}.
      */
-    function balanceOf(address owner)
-        public
-        view
-        virtual
-        override
-        returns (uint256)
-    {
-        require(
-            owner != address(0),
-            "ERC721: balance query for the zero address"
-        );
+    function balanceOf(address owner) public view virtual override returns (uint256) {
+        require(owner != address(0), "ERC721: balance query for the zero address");
         return _balances[owner];
     }
 
     /**
      * @dev See {IERC721-ownerOf}.
      */
-    function ownerOf(uint256 tokenId)
-        public
-        view
-        virtual
-        override
-        returns (address)
-    {
+    function ownerOf(uint256 tokenId) public view virtual override returns (address) {
         address owner = _owners[tokenId];
-        require(
-            owner != address(0),
-            "ERC721: owner query for nonexistent token"
-        );
+        require(owner != address(0), "ERC721: owner query for nonexistent token");
         return owner;
     }
 
@@ -820,23 +780,11 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721Metadata-tokenURI}.
      */
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        virtual
-        override
-        returns (string memory)
-    {
-        require(
-            _exists(tokenId),
-            "ERC721Metadata: URI query for nonexistent token"
-        );
+    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
         string memory baseURI = _baseURI();
-        return
-            bytes(baseURI).length > 0
-                ? string(abi.encodePacked(baseURI, tokenId.toString()))
-                : "";
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : "";
     }
 
     /**
@@ -866,17 +814,8 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-getApproved}.
      */
-    function getApproved(uint256 tokenId)
-        public
-        view
-        virtual
-        override
-        returns (address)
-    {
-        require(
-            _exists(tokenId),
-            "ERC721: approved query for nonexistent token"
-        );
+    function getApproved(uint256 tokenId) public view virtual override returns (address) {
+        require(_exists(tokenId), "ERC721: approved query for nonexistent token");
 
         return _tokenApprovals[tokenId];
     }
@@ -884,11 +823,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-setApprovalForAll}.
      */
-    function setApprovalForAll(address operator, bool approved)
-        public
-        virtual
-        override
-    {
+    function setApprovalForAll(address operator, bool approved) public virtual override {
         require(operator != _msgSender(), "ERC721: approve to caller");
 
         _operatorApprovals[_msgSender()][operator] = approved;
@@ -898,13 +833,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-isApprovedForAll}.
      */
-    function isApprovedForAll(address owner, address operator)
-        public
-        view
-        virtual
-        override
-        returns (bool)
-    {
+    function isApprovedForAll(address owner, address operator) public view virtual override returns (bool) {
         return _operatorApprovals[owner][operator];
     }
 
@@ -917,10 +846,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         uint256 tokenId
     ) public virtual override {
         //solhint-disable-next-line max-line-length
-        require(
-            _isApprovedOrOwner(_msgSender(), tokenId),
-            "ERC721: transfer caller is not owner nor approved"
-        );
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
 
         _transfer(from, to, tokenId);
     }
@@ -945,10 +871,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         uint256 tokenId,
         bytes memory _data
     ) public virtual override {
-        require(
-            _isApprovedOrOwner(_msgSender(), tokenId),
-            "ERC721: transfer caller is not owner nor approved"
-        );
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
         _safeTransfer(from, to, tokenId, _data);
     }
 
@@ -977,10 +900,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         bytes memory _data
     ) internal virtual {
         _transfer(from, to, tokenId);
-        require(
-            _checkOnERC721Received(from, to, tokenId, _data),
-            "ERC721: transfer to non ERC721Receiver implementer"
-        );
+        require(_checkOnERC721Received(from, to, tokenId, _data), "ERC721: transfer to non ERC721Receiver implementer");
     }
 
     /**
@@ -1002,20 +922,10 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
      *
      * - `tokenId` must exist.
      */
-    function _isApprovedOrOwner(address spender, uint256 tokenId)
-        internal
-        view
-        virtual
-        returns (bool)
-    {
-        require(
-            _exists(tokenId),
-            "ERC721: operator query for nonexistent token"
-        );
+    function _isApprovedOrOwner(address spender, uint256 tokenId) internal view virtual returns (bool) {
+        require(_exists(tokenId), "ERC721: operator query for nonexistent token");
         address owner = ERC721.ownerOf(tokenId);
-        return (spender == owner ||
-            getApproved(tokenId) == spender ||
-            isApprovedForAll(owner, spender));
+        return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(owner, spender));
     }
 
     /**
@@ -1112,10 +1022,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         address to,
         uint256 tokenId
     ) internal virtual {
-        require(
-            ERC721.ownerOf(tokenId) == from,
-            "ERC721: transfer of token that is not own"
-        );
+        require(ERC721.ownerOf(tokenId) == from, "ERC721: transfer of token that is not own");
         require(to != address(0), "ERC721: transfer to the zero address");
 
         _beforeTokenTransfer(from, to, tokenId);
@@ -1157,20 +1064,11 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         bytes memory _data
     ) private returns (bool) {
         if (to.isContract()) {
-            try
-                IERC721Receiver(to).onERC721Received(
-                    _msgSender(),
-                    from,
-                    tokenId,
-                    _data
-                )
-            returns (bytes4 retval) {
+            try IERC721Receiver(to).onERC721Received(_msgSender(), from, tokenId, _data) returns (bytes4 retval) {
                 return retval == IERC721Receiver(to).onERC721Received.selector;
             } catch (bytes memory reason) {
                 if (reason.length == 0) {
-                    revert(
-                        "ERC721: transfer to non ERC721Receiver implementer"
-                    );
+                    revert("ERC721: transfer to non ERC721Receiver implementer");
                 } else {
                     assembly {
                         revert(add(32, reason), mload(reason))
@@ -1203,6 +1101,12 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     ) internal virtual {}
 }
 
+
+
+
+
+
+
 /**
  * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
@@ -1217,10 +1121,7 @@ interface IERC721Enumerable is IERC721 {
      * @dev Returns a token ID owned by `owner` at a given `index` of its token list.
      * Use along with {balanceOf} to enumerate all of ``owner``'s tokens.
      */
-    function tokenOfOwnerByIndex(address owner, uint256 index)
-        external
-        view
-        returns (uint256 tokenId);
+    function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256 tokenId);
 
     /**
      * @dev Returns a token ID at a given `index` of all the tokens stored by the contract.
@@ -1228,6 +1129,7 @@ interface IERC721Enumerable is IERC721 {
      */
     function tokenByIndex(uint256 index) external view returns (uint256);
 }
+
 
 /**
  * @dev This implements an optional extension of {ERC721} defined in the EIP that adds
@@ -1250,32 +1152,15 @@ abstract contract ERC721Enumerable is ERC721, IERC721Enumerable {
     /**
      * @dev See {IERC165-supportsInterface}.
      */
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override(IERC165, ERC721)
-        returns (bool)
-    {
-        return
-            interfaceId == type(IERC721Enumerable).interfaceId ||
-            super.supportsInterface(interfaceId);
+    function supportsInterface(bytes4 interfaceId) public view virtual override(IERC165, ERC721) returns (bool) {
+        return interfaceId == type(IERC721Enumerable).interfaceId || super.supportsInterface(interfaceId);
     }
 
     /**
      * @dev See {IERC721Enumerable-tokenOfOwnerByIndex}.
      */
-    function tokenOfOwnerByIndex(address owner, uint256 index)
-        public
-        view
-        virtual
-        override
-        returns (uint256)
-    {
-        require(
-            index < ERC721.balanceOf(owner),
-            "ERC721Enumerable: owner index out of bounds"
-        );
+    function tokenOfOwnerByIndex(address owner, uint256 index) public view virtual override returns (uint256) {
+        require(index < ERC721.balanceOf(owner), "ERC721Enumerable: owner index out of bounds");
         return _ownedTokens[owner][index];
     }
 
@@ -1289,17 +1174,8 @@ abstract contract ERC721Enumerable is ERC721, IERC721Enumerable {
     /**
      * @dev See {IERC721Enumerable-tokenByIndex}.
      */
-    function tokenByIndex(uint256 index)
-        public
-        view
-        virtual
-        override
-        returns (uint256)
-    {
-        require(
-            index < ERC721Enumerable.totalSupply(),
-            "ERC721Enumerable: global index out of bounds"
-        );
+    function tokenByIndex(uint256 index) public view virtual override returns (uint256) {
+        require(index < ERC721Enumerable.totalSupply(), "ERC721Enumerable: global index out of bounds");
         return _allTokens[index];
     }
 
@@ -1365,9 +1241,7 @@ abstract contract ERC721Enumerable is ERC721, IERC721Enumerable {
      * @param from address representing the previous owner of the given token ID
      * @param tokenId uint256 ID of the token to be removed from the tokens list of the given address
      */
-    function _removeTokenFromOwnerEnumeration(address from, uint256 tokenId)
-        private
-    {
+    function _removeTokenFromOwnerEnumeration(address from, uint256 tokenId) private {
         // To prevent a gap in from's tokens array, we store the last token in the index of the token to delete, and
         // then delete the last slot (swap and pop).
 
@@ -1413,357 +1287,156 @@ abstract contract ERC721Enumerable is ERC721, IERC721Enumerable {
     }
 }
 
-contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
+interface IERC20 {
+    function transfer(address recipient, uint256 amount) external returns (bool);
+
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) external returns (bool);
+}
+
+
+contract Name is ERC721Enumerable, ReentrancyGuard, Ownable {
     using strings for string;
     using strings for strings.slice;
 
-    uint8[] private numberOfWorlds = [
-        5,
-        5,
-        5,
-        6,
-        6,
-        6,
-        6,
-        6,
-        6,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        9,
-        9,
-        9,
-        9
-    ];
+    ERC721 public constant loot = ERC721(0xFF9C1b15B16263C61d017ee9F65C50e4AE0113D7);
+    IERC20 public constant agld = IERC20(0x32353A6C91143bfd6C7d363B546e62a9A2489A20);
+    uint256 private constant NAME_CHANGE_BASE_PRICE = 420 * 10**18;
 
-    string[] private numberToString = [
-        "ZERO",
-        "ONE",
-        "TWO",
-        "THREE",
-        "FOUR",
-        "FIVE",
-        "SIX",
-        "SEVEN",
-        "EIGHT",
-        "NINE"
-    ];
+    string private constant prefixes = "Master,Right Honourable,Senator,President,Generalissimo,His Majesty,Her Majesty,His Grace,Her Grace,Lord,Archbishop,Bishop,Council,Emperor,Empress,Caesar,Chieftain,Chief Ape,Couch,Pope,King,Queen,Dr.,Ser,Prophet,Professor,Marshal,Private,Comrade,Fren,Druid,Imperator,Doge,Archon,Lord Protector,Archduke,Duke,Earl,Count,Baron,Basileus,Khan,Earth-Shaker,Mayor,Viceroy,Tribune,Chad,Cringe,Based,0x,Mohandas,Arch-ape,General Financier,DAO Dictator,Benevolent Dictator,Secretary of the Treasury,Khal,Khaleesi,Sultan";
+    uint256 private constant prefixesLength = 59;
 
-    string[] private worldTypes = [
-        "TERRESTRIAL",
-        "OCEAN",
-        "ICE",
-        "GAS",
-        "RARE",
-        "RARER",
-        "RAREST"
-    ];
+    string private constant firstNames = "Satoshi,Vitalik,Vlad,Adam,Ailmar,Darfin,Jhaan,Zabbas,Neldor,Gandor,Bellas,Daealla,Nym,Vesryn,Angor,Gogu,Malok,Rotnam,Chalia,Astra,Fabien,Orion,Quintus,Remus,Rorik,Sirius,Sybella,Azura,Dorath,Freya,Ophelia,Yvanna,Zeniya,James,Robert,John,Michael,William,David,Richard,Joseph,Thomas,Charles,Mary,Patricia,Jennifer,Linda,Elizabeth,Barbara,Susan,Jessica,Sarah,Karen,Dilibe,Eva,Matthew,Bolethe,Polycarp,Ambrogino,Jiri,Chukwuebuka,Chinonyelum,Mikael,Mira,Aniela,Samuel,Isak,Archibaldo,Chinyelu,Kerstin,Abigail,Olympia,Grace,Nahum,Elisabeth,Serge,Sugako,Patrick,Florus,Svatava,Ilona,Lachlan,Caspian,Filippa,Paulo,Darda,Linda,Gradasso,Carly,Jens,Betty,Ebony,Dennis,Martin Davorin,Laura,Jesper,Remy,Onyekachukwu,Jan,Dioscoro,Hilarij,Rosvita,Noah,Patrick,Mohammed,Chinwemma,Raff,Aron,Miguel,Dzemail,Gawel,Gustave,Efraim,Adelbert,Jody,Mackenzie,Victoria,Selam,Jenci,Ulrich,Chishou,Domonkos,Stanislaus,Fortinbras,George,Daniel,Annabelle,Shunichi,Bogdan,Anastazja,Marcus,Monica,Martin,Yuukou,Harriet,Geoffrey,Jonas,Dennis,Hana,Abdelhak,Ravil,Patrick,Karl,Eve,Csilla,Isabella,Radim,Thomas,Faina,Rasmus,Alma,Charles,Chad,Zefram,Hayden,Joseph,Andre,Irene,Molly,Cindy,Su,Stani,Ed,Janet,Cathy,Kyle,Zaki,Belle,Bella,Jessica,Amou,Steven,Olgu,Eva,Ivan,Vllad,Helga,Anya,John,Rita,Evan,Jason,Donald,Tyler,Changpeng,Sam";
+    uint256 private constant firstNamesLength = 186;
 
-    string[] private terrestrialWorlds = [
-        "Small Hot Terrestrial",
-        "Small Temperate Terrestrial",
-        "Small Cool Terrestrial",
-        "Medium Hot Terrestrial",
-        "Medium Temperate Terrestrial",
-        "Medium Cool Terrestrial",
-        "Large Hot Terrestrial",
-        "Large Temperate Terrestrial",
-        "Large Cool Terrestrial"
-    ];
+    string private constant middleNames = "von,de la,chadde,mise,of,da,from,in,first of,sixth of,t11s,hi tuba,vibes,mons,zef,state,sump,sunarto,jai,mewny,amogsus,light,groovy,formerly";
+    uint256 private constant middleNamesLength = 24;
 
-    string[] private oceanWorlds = [
-        "Small H2O Ocean World",
-        "Medium H2O Ocean World",
-        "Large H2O Ocean World"
-    ];
+    string private constant lastNames = "Nakamoto,Buterin,Zamfir,Mintz,Ashbluff,Marblemaw,Bozzelli,Fellowes,Windward,Yarrow,Yearwood,Wixx,Humblecut,Dustfinger,Biddercombe,Kicklighter,Vespertine,October,Gannon,Collymore,Stoll,Adler,Huxley,Ledger,Hayes,Ford,Finnegan,Beckett,Zimmerman,Crassus,Hendrix,Lennon,Thatcher,St. James,Cromwell,Monroe,West,Langley,Cassidy,Lopez,Jenkins,Udobata,Valova,Gresham,Frederiksen,Vasiliev,Mancini,Danicek,Okwuoma,Chibugo,Broberg,Strozak,Borkowska,Araujo,Geisler,Hidalgo,Ibekwe,Schmidt,Leehy,Rodrigue,Hines,Izmaylov,Egede,Pinette,Hakugi,McLellan,Mailhot,Lelkova,Simon,Tjangamarra,Sandgreen,Nystrom,Kjeldsen,Goncalves,Sos,Hornblower,Pelletier,Donaldson,Jackson,Rojo,Ermakov,Stornik,Lothran,Gousse,Henrichon,Onwuka,Horak,Elizondo,Mikulanc,Skotnik,Berg,Nilsson,Berg,Enyinnaya,Hermanns,Holmberg,Oliveira,Kufersin,Kwiatkowski,Courtois,Piest,Sandheaver,Woods,Ives,Dias,Grizelj,Viragh,Blau,Kodou,Torma,Sorokina,Took-Took,Allen,Melo,Bunker,Kiyomizu,Donkervoort,Maciejewska,Steffensen,Solomina,Zidek,Gotou,Bryant,Quenneville,Karlsen,Thomsen,Havlikova,Feron,Bazhenov,Amsel,Enoksen,Schneider,Kiss,Woodd,Benes,Probst,Aliyeva,Fleischer,Plain,Hoskinson,Chad,Maki,Gandhi,Zhao,Wintermute,Cronje,Felten,Yellen,Wood,Zhu,Davis,K,Delphine,Thorne,Kulechov,Nigiri,Goldfeder,Ranth,Galt,Lincoln,Trump";
+    uint256 private constant lastNamesLength = 161;
 
-    string[] private iceWorlds = [
-        "Small H2O Ice World",
-        "Medium H2O Ice World",
-        "Large H2O Ice World",
-        "Small CO2 NH3 Ice World",
-        "Medium CO2 NH3 Ice World",
-        "Large CO2 NH3 Ice World",
-        "Small CH4 Ice World",
-        "Medium CH4 Ice World",
-        "Large CH4 Ice World"
-    ];
+    string private constant suffixes = "the Great,Jr.,Sr.,the Ape,the Magnificent,the Impaler,the Able,the Ambitious,the Astrologer,the Bad,the Bastard,the Black,the Blessed,the Bloody,the Conqueror,the Cruel,the Damned,Dracula,the Drunkard,the Elder,the Eloquent,the Enlightened,the Fair,the Farmer,the Fat,the Fearless,the Fighter,the Comfy,the Couch,the Fortunate,the Generous,the Gentle,the Glorious,the Good,the God-Given,the Grim,the Handsome,the Hammer,Hadrada,the Hidden,the Holy,the Hunter,the Illustrious,the Invincible,the Iron,the Just,the Kind,the Lame,the Last,the Lawgiver,the Learned,the Liberator,the Lion,the Mad,the Magnanimous,the Mighty,the Monk,the Mild,the Musician,the Navigator,the Nobel,the Old,the One-Eyed,the Outlaw,the Pale,the Peaceful,the Philosopher,the Pilgrim,the Pious,the Poet,the Proud,the Quiet,the Rash,the Red,the Reformer,the Saint,the Savior,the Seer,the Short,the Silent,the Simple,the Sorcerer,the Strong,the Tall,the Terrible,the Thunderbolt,the Trembling,the Tyrant,the Unlucky,the Unready,the Vain,the Virgin,the Warrior,the Weak,the White,the Wicked,the Wise,the Young,the Cuck,the Chad,the NoCoiner,.eth,da gay,the Prophet,the Paper-Handed";
+    uint256 private constant suffixesLength = 105;
 
-    string[] private gasWorlds = [
-        "Small Type I Gas Giant",
-        "Medium Type I Gas Giant",
-        "Large Type I Gas Giant",
-        "Massive Type I Gas Giant",
-        "Super Massive Type I Gas Giant",
-        "Small Type II Gas Giant",
-        "Medium Type II Gas Giant",
-        "Large Type II Gas Giant",
-        "Massive Type II Gas Giant",
-        "Super Massive Type II Gas Giant",
-        "Small Type III Gas Giant",
-        "Medium Type III Gas Giant",
-        "Large Type III Gas Giant",
-        "Massive Type III Gas Giant",
-        "Super Massive Type III Gas Giant",
-        "Small Type IV Gas Giant",
-        "Medium Type IV Gas Giant",
-        "Large Type IV Gas Giant",
-        "Massive Type IV Gas Giant",
-        "Super Massive Type IV Gas Giant",
-        "Small Type V Gas Giant",
-        "Medium Type V Gas Giant",
-        "Large Type V Gas Giant",
-        "Massive Type V Gas Giant",
-        "Super Massive Type V Gas Giant"
-    ];
-
-    string[] private rareWorlds = [
-        "Small Lava World",
-        "Medium Lava World",
-        "Large Lava World",
-        "Small Chthonian World",
-        "Medium Chthonian World",
-        "Large Chthonian World",
-        "Small Desert World",
-        "Medium Desert World",
-        "Large Desert World",
-        "Small Hydrocarbon Ocean World",
-        "Medium Hydrocarbon Ocean World",
-        "Large Hydrocarbon Ocean World"
-    ];
-
-    string[] private rarerWorlds = [
-        "Small Orbital Sphere",
-        "Medium Orbital Sphere",
-        "Large Orbital Sphere",
-        "Small Orbital Ring",
-        "Medium Orbital Ring",
-        "Large Orbital Ring"
-    ];
-
-    string[] private rarestWorlds = [
-        "Small Shellworld",
-        "Medium Shellworld",
-        "Large Shellworld",
-        "Dyson Sphere"
-    ];
+    mapping(uint256 => string) internal firstNameOverride;
+    mapping(uint256 => string) internal lastNameOverride;
+    mapping(uint256 => uint256) public numNameChanges;
 
     function random(string memory input) internal pure returns (uint256) {
         return uint256(keccak256(abi.encodePacked(input)));
     }
 
-    function getSystemId(uint256 tokenId) public pure returns (string memory) {
-        string memory systemNumber = toString(tokenId);
-        if (tokenId < 10) {
-            systemNumber = string(abi.encodePacked("000", systemNumber));
-        } else if (tokenId < 100) {
-            systemNumber = string(abi.encodePacked("00", systemNumber));
-        } else if (tokenId < 1000) {
-            systemNumber = string(abi.encodePacked("0", systemNumber));
-        }
-
-        return string(abi.encodePacked("SN-", systemNumber));
+    function getPrefix(uint256 tokenId) public pure returns (string memory) {
+        return pluck(tokenId, "PREFIX", prefixes, prefixesLength, true);
     }
 
-    function getNumberOfWorlds(uint256 tokenId) public view returns (uint8) {
-        uint256 rand = random(
-            string(abi.encodePacked("NUMBER_OF_WORLDS", toString(tokenId)))
-        );
-        uint8 numWorlds = numberOfWorlds[rand % numberOfWorlds.length];
-
-        return numWorlds;
+    function getFirstName(uint256 tokenId) public view returns (string memory) {
+        if (numNameChanges[tokenId] > 0) {
+            return firstNameOverride[tokenId];
+        }
+        return pluck(tokenId, "FIRST_NAME", firstNames, firstNamesLength, false);
     }
 
-    function getWorld(
-        uint256 tokenId,
-        uint256 worldNumberIndex,
-        uint256 worldTypeIndex,
-        string[] memory sourceArray,
-        uint256 inhabitedThreshold,
-        uint256 abandonedThreshold
-    ) public view returns (string memory) {
-        uint256 rand = random(
-            string(
-                abi.encodePacked(
-                    worldTypes[worldTypeIndex],
-                    toString(tokenId),
-                    numberToString[worldNumberIndex],
-                    toString(inhabitedThreshold),
-                    toString(abandonedThreshold)
-                )
-            )
-        );
-
-        string memory world = sourceArray[rand % sourceArray.length];
-
-        uint256 chance = rand % 101;
-
-        if (chance < inhabitedThreshold) {
-            world = string(abi.encodePacked("Inhabited ", world));
-        } else if (chance < abandonedThreshold) {
-            world = string(abi.encodePacked("Abandoned ", world));
-        }
-
-        return world;
+    function getMiddleName(uint256 tokenId) public pure returns (string memory) {
+        return pluck(tokenId, "MIDDLE_NAME", middleNames, middleNamesLength, true);
     }
 
-    function getWorlds(uint256 tokenId) public view returns (string[] memory) {
-        uint8 numWorlds = getNumberOfWorlds(tokenId);
-
-        string[] memory worlds = new string[](numWorlds);
-
-        for (uint256 worldIndex = 0; worldIndex < numWorlds; worldIndex++) {
-            uint256 rand = random(
-                string(
-                    abi.encodePacked(
-                        numberToString[worldIndex],
-                        toString(tokenId)
-                    )
-                )
-            );
-
-            uint256 chance = rand % 101;
-
-            string memory world;
-
-            if (chance < 33) {
-                world = getWorld(
-                    tokenId,
-                    worldIndex,
-                    0,
-                    terrestrialWorlds,
-                    41,
-                    71
-                );
-            } else if (chance < 46) {
-                world = getWorld(tokenId, worldIndex, 1, oceanWorlds, 21, 36);
-            } else if (chance < 63) {
-                world = getWorld(tokenId, worldIndex, 2, iceWorlds, 9, 20);
-            } else if (chance < 93) {
-                world = getWorld(tokenId, worldIndex, 3, gasWorlds, 3, 6);
-            } else if (chance < 97) {
-                world = getWorld(tokenId, worldIndex, 4, rareWorlds, 7, 23);
-            } else if (chance < 100) {
-                world = getWorld(tokenId, worldIndex, 5, rarerWorlds, 71, 101);
-            } else if (chance == 100) {
-                world = getWorld(tokenId, worldIndex, 6, rarestWorlds, 71, 101);
-            }
-
-            if (
-                keccak256(bytes(world)) ==
-                keccak256(bytes("Abandoned Dyson Sphere"))
-            ) {
-                string[] memory onlyDyson = new string[](1);
-                onlyDyson[0] = "Abandoned Dyson Sphere";
-                return onlyDyson;
-            }
-
-            if (
-                keccak256(bytes(world)) ==
-                keccak256(bytes("Inhabited Dyson Sphere"))
-            ) {
-                string[] memory onlyDyson = new string[](1);
-                onlyDyson[0] = "Inhabited Dyson Sphere";
-                return onlyDyson;
-            }
-
-            worlds[worldIndex] = world;
+    function getLastName(uint256 tokenId) public view returns (string memory) {
+        if (numNameChanges[tokenId] > 0) {
+            return lastNameOverride[tokenId];
         }
-
-        return worlds;
+        return pluck(tokenId, "LAST_NAME", lastNames, lastNamesLength, false);
     }
 
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        override
-        returns (string memory)
-    {
-        string[] memory worlds = getWorlds(tokenId);
+    function getSuffix(uint256 tokenId) public pure returns (string memory) {
+        return pluck(tokenId, "SUFFIX", suffixes, suffixesLength, true);
+    }
 
-        string[2] memory parts;
-
-        parts[
-            0
-        ] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { fill: #EEEEFF; font-family: sans-serif; font-size: 14px; }</style><rect width="100%" height="100%" fill="black" /><text x="10" y="20" class="base">';
-
-        string memory systemId = getSystemId(tokenId);
-
-        parts[1] = string(
-            abi.encodePacked(
-                systemId,
-                '</text><text x="10" y="40" class="base">'
-            )
-        );
-
-        string memory output = string(abi.encodePacked(parts[0], parts[1]));
-
-        for (uint8 i = 0; i < worlds.length; i++) {
-            string memory world = worlds[i];
-            uint256 multiplier = i + 3;
-            uint256 yValue = 20 * multiplier;
-            string memory yString = toString(yValue);
-            string memory closing = (i != (worlds.length - 1))
-                ? string(
-                    abi.encodePacked(
-                        '</text><text x="10" y="',
-                        yString,
-                        '" class="base">'
-                    )
-                )
-                : "</text></svg>";
-            string memory line = string(abi.encodePacked(world, closing));
-            output = string(abi.encodePacked(output, line));
+    function pluck(uint256 tokenId, string memory keyPrefix, string memory sourceCSV, uint256 sourceCSVLength, bool rareTrait) internal pure returns (string memory) {
+        uint256 rand = random(string(abi.encodePacked(keyPrefix, Strings.toString(tokenId))));
+        if (!rareTrait || shouldGib(tokenId, keyPrefix)) {
+            return getItemFromCSV(sourceCSV, rand % sourceCSVLength);
+        } else {
+            return "";
         }
+    }
 
-        string memory json = Base64.encode(
-            bytes(
-                string(
-                    abi.encodePacked(
-                        '{"name": "World #',
-                        toString(tokenId),
-                        '", "description": "Worlds is randomly generated star systems created and stored on chain. Stats, images, and other functionality are intentionally omitted for others to interpret. Feel free to use Worlds in any way you want.", "image": "data:image/svg+xml;base64,',
-                        Base64.encode(bytes(output)),
-                        '"}'
-                    )
-                )
-            )
-        );
-        output = string(
-            abi.encodePacked("data:application/json;base64,", json)
-        );
+    function shouldGib(uint256 tokenId, string memory keyPrefix) internal pure returns (bool) {
+        uint256 rand = random(string(abi.encodePacked("SHOULD_GIB", keyPrefix, Strings.toString(tokenId))));
+        uint256 greatness = rand % 21;
+        return (greatness >= 19);
+    }
+
+    function tokenURI(uint256 tokenId) override public view returns (string memory) {
+        string[11] memory parts;
+
+        parts[0] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { fill: white; font-family: serif; font-size: 14px; }</style><rect width="100%" height="100%" fill="black" /><text x="10" y="20" class="base">';
+
+        parts[1] = getPrefix(tokenId);
+
+        parts[2] = bytes(parts[1]).length > 0 ? ' ' : '';
+
+        parts[3] = getFirstName(tokenId);
+
+        parts[4] = ' ';
+
+        parts[5] = getMiddleName(tokenId);
+
+        parts[6] = bytes(parts[5]).length > 0 ? ' ' : '';
+
+        parts[7] = getLastName(tokenId);
+
+        parts[9] = getSuffix(tokenId);
+
+        parts[8] = bytes(parts[9]).length > 0 ? ' ' : '';
+
+        parts[10] = '</text></svg>';
+
+        string memory output = string(abi.encodePacked(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8]));
+        output = string(abi.encodePacked(output, parts[9], parts[10]));
+
+        string memory fullName = string(abi.encodePacked(parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8], parts[9]));
+        string memory json = Base64.encode(bytes(string(abi.encodePacked('{"name": "', fullName, '", "description": "Name is randomized adventurer name generated and stored on chain. Stats, images, and other functionality are intentionally omitted for others to interpret. Feel free to use Name in any way you want.", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(output)), '"}'))));
+        output = string(abi.encodePacked('data:application/json;base64,', json));
 
         return output;
     }
 
-    function claim(uint256 tokenId) public nonReentrant {
-        require(tokenId > 0 && tokenId < 9901, "Token ID invalid");
+    function claim(uint256 tokenId) external nonReentrant {
+        require(tokenId > 8000 && tokenId < 8021, "Token ID invalid");
         _safeMint(_msgSender(), tokenId);
     }
 
-    function ownerClaim(uint256 tokenId) public nonReentrant onlyOwner {
-        require(tokenId > 9900 && tokenId < 10001, "Token ID invalid");
-        _safeMint(owner(), tokenId);
+    function claimForLoot(uint256 tokenId) external nonReentrant {
+        require(tokenId > 0 && tokenId < 8001, "Token ID invalid");
+        require(loot.ownerOf(tokenId) == msg.sender, "Not Loot owner");
+        _safeMint(_msgSender(), tokenId);
     }
 
-    function getItemFromCSV(string memory str, uint256 index)
-        internal
-        pure
-        returns (string memory)
-    {
+    /**
+     * @notice The price for changing names starts at 420 ALGD and doubles after every change
+     */
+    function nameChangePrice(uint256 tokenId) public view returns (uint256) {
+        return NAME_CHANGE_BASE_PRICE * (2 ** numNameChanges[tokenId]);
+    }
+
+    function changeName(uint256 tokenId, string calldata firstName, string calldata lastName) external nonReentrant {
+        require(tokenId > 0 && tokenId < 8021, "Token ID invalid");
+        require(ownerOf(tokenId) == msg.sender, "Not Name owner");
+
+        // transfer AGLD to owner
+        agld.transferFrom(msg.sender, owner(), nameChangePrice(tokenId));
+
+        // override name
+        firstNameOverride[tokenId] = firstName;
+        lastNameOverride[tokenId] = lastName;
+        numNameChanges[tokenId] += 1;
+    }
+
+    function getItemFromCSV(string memory str, uint256 index) internal pure returns (string memory) {
         strings.slice memory strSlice = str.toSlice();
         string memory separatorStr = ",";
         strings.slice memory separator = separatorStr.toSlice();
@@ -1774,29 +1447,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
         return item.toString();
     }
 
-    function toString(uint256 value) internal pure returns (string memory) {
-        // Inspired by OraclizeAPI's implementation - MIT license
-        // https://github.com/oraclize/ethereum-api/blob/b42146b063c7d6ee1358846c198246239e9360e8/oraclizeAPI_0.4.25.sol
-
-        if (value == 0) {
-            return "0";
-        }
-        uint256 temp = value;
-        uint256 digits;
-        while (temp != 0) {
-            digits++;
-            temp /= 10;
-        }
-        bytes memory buffer = new bytes(digits);
-        while (value != 0) {
-            digits -= 1;
-            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
-            value /= 10;
-        }
-        return string(buffer);
-    }
-
-    constructor() ERC721("Worlds", "WORLDS") Ownable() {}
+    constructor() ERC721("Name", "NAME") Ownable() {}
 }
 
 /// [MIT License]
@@ -1804,8 +1455,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
 /// @notice Provides a function for encoding some bytes in base64
 /// @author Brecht Devos <brecht@loopring.org>
 library Base64 {
-    bytes internal constant TABLE =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    bytes internal constant TABLE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
     /// @notice Encodes some bytes to the base64 representation
     function encode(bytes memory data) internal pure returns (string memory) {
@@ -1834,20 +1484,11 @@ library Base64 {
 
                 let out := mload(add(tablePtr, and(shr(18, input), 0x3F)))
                 out := shl(8, out)
-                out := add(
-                    out,
-                    and(mload(add(tablePtr, and(shr(12, input), 0x3F))), 0xFF)
-                )
+                out := add(out, and(mload(add(tablePtr, and(shr(12, input), 0x3F))), 0xFF))
                 out := shl(8, out)
-                out := add(
-                    out,
-                    and(mload(add(tablePtr, and(shr(6, input), 0x3F))), 0xFF)
-                )
+                out := add(out, and(mload(add(tablePtr, and(shr(6, input), 0x3F))), 0xFF))
                 out := shl(8, out)
-                out := add(
-                    out,
-                    and(mload(add(tablePtr, and(input, 0x3F))), 0xFF)
-                )
+                out := add(out, and(mload(add(tablePtr, and(input, 0x3F))), 0xFF))
                 out := shl(224, out)
 
                 mstore(resultPtr, out)
@@ -1910,17 +1551,13 @@ pragma solidity ^0.8.0;
 
 library strings {
     struct slice {
-        uint256 _len;
-        uint256 _ptr;
+        uint _len;
+        uint _ptr;
     }
 
-    function memcpy(
-        uint256 dest,
-        uint256 src,
-        uint256 len
-    ) private pure {
+    function memcpy(uint dest, uint src, uint len) private pure {
         // Copy word-length chunks while possible
-        for (; len >= 32; len -= 32) {
+        for(; len >= 32; len -= 32) {
             assembly {
                 mstore(dest, mload(src))
             }
@@ -1929,7 +1566,7 @@ library strings {
         }
 
         // Copy remaining bytes
-        uint256 mask = 256**(32 - len) - 1;
+        uint mask = 256 ** (32 - len) - 1;
         assembly {
             let srcpart := and(mload(src), not(mask))
             let destpart := and(mload(dest), mask)
@@ -1943,7 +1580,7 @@ library strings {
      * @return A newly allocated slice containing the entire string.
      */
     function toSlice(string memory self) internal pure returns (slice memory) {
-        uint256 ptr;
+        uint ptr;
         assembly {
             ptr := add(self, 0x20)
         }
@@ -1957,10 +1594,8 @@ library strings {
      */
     function toString(slice memory self) internal pure returns (string memory) {
         string memory ret = new string(self._len);
-        uint256 retptr;
-        assembly {
-            retptr := add(ret, 32)
-        }
+        uint retptr;
+        assembly { retptr := add(ret, 32) }
 
         memcpy(retptr, self._ptr, self._len);
         return ret;
@@ -1968,51 +1603,38 @@ library strings {
 
     // Returns the memory address of the first byte of the first occurrence of
     // `needle` in `self`, or the first byte after `self` if not found.
-    function findPtr(
-        uint256 selflen,
-        uint256 selfptr,
-        uint256 needlelen,
-        uint256 needleptr
-    ) private pure returns (uint256) {
-        uint256 ptr = selfptr;
-        uint256 idx;
+    function findPtr(uint selflen, uint selfptr, uint needlelen, uint needleptr) private pure returns (uint) {
+        uint ptr = selfptr;
+        uint idx;
 
         if (needlelen <= selflen) {
             if (needlelen <= 32) {
-                bytes32 mask = bytes32(~(2**(8 * (32 - needlelen)) - 1));
+                bytes32 mask = bytes32(~(2 ** (8 * (32 - needlelen)) - 1));
 
                 bytes32 needledata;
-                assembly {
-                    needledata := and(mload(needleptr), mask)
-                }
+                assembly { needledata := and(mload(needleptr), mask) }
 
-                uint256 end = selfptr + selflen - needlelen;
+                uint end = selfptr + selflen - needlelen;
                 bytes32 ptrdata;
-                assembly {
-                    ptrdata := and(mload(ptr), mask)
-                }
+                assembly { ptrdata := and(mload(ptr), mask) }
 
                 while (ptrdata != needledata) {
-                    if (ptr >= end) return selfptr + selflen;
+                    if (ptr >= end)
+                        return selfptr + selflen;
                     ptr++;
-                    assembly {
-                        ptrdata := and(mload(ptr), mask)
-                    }
+                    assembly { ptrdata := and(mload(ptr), mask) }
                 }
                 return ptr;
             } else {
                 // For long needles, use hashing
                 bytes32 hash;
-                assembly {
-                    hash := keccak256(needleptr, needlelen)
-                }
+                assembly { hash := keccak256(needleptr, needlelen) }
 
                 for (idx = 0; idx <= selflen - needlelen; idx++) {
                     bytes32 testHash;
-                    assembly {
-                        testHash := keccak256(ptr, needlelen)
-                    }
-                    if (hash == testHash) return ptr;
+                    assembly { testHash := keccak256(ptr, needlelen) }
+                    if (hash == testHash)
+                        return ptr;
                     ptr += 1;
                 }
             }
@@ -2030,12 +1652,8 @@ library strings {
      * @param token An output parameter to which the first token is written.
      * @return `token`.
      */
-    function split(
-        slice memory self,
-        slice memory needle,
-        slice memory token
-    ) internal pure returns (slice memory) {
-        uint256 ptr = findPtr(self._len, self._ptr, needle._len, needle._ptr);
+    function split(slice memory self, slice memory needle, slice memory token) internal pure returns (slice memory) {
+        uint ptr = findPtr(self._len, self._ptr, needle._len, needle._ptr);
         token._ptr = self._ptr;
         token._len = ptr - self._ptr;
         if (ptr == self._ptr + self._len) {
@@ -2057,11 +1675,7 @@ library strings {
      * @param needle The text to search for in `self`.
      * @return The part of `self` up to the first occurrence of `delim`.
      */
-    function split(slice memory self, slice memory needle)
-        internal
-        pure
-        returns (slice memory token)
-    {
+    function split(slice memory self, slice memory needle) internal pure returns (slice memory token) {
         split(self, needle, token);
     }
 }

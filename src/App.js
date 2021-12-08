@@ -9,7 +9,7 @@ const tokenURIStringHeaderLength = "data:text/plain;base64,".length;
 
 function App() {
 
-  const [tokenId, setTokenId] = useState(0);
+  const [tokenId, setTokenId] = useState(1);
   const [imageURI, setImageURI] = useState(null);
 
   async function requestAccount() {
@@ -66,7 +66,7 @@ function App() {
 
   async function logAllWorlds() {
     if (typeof window.ethereum !== 'undefined') {
-      //let allWorlds = [];
+      let allWorlds = [];
       await requestAccount();
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -82,17 +82,17 @@ function App() {
         const data = Buffer.from(decodedToken.data.substring(tokenURIStringHeaderLength), 'base64');
         const decodedData = new TextDecoder().decode(data);
 
-        if (decodedData.includes('Dyson')) {
-          console.log('Dyson Sphere Found');
-        }
-        // if (i < 1000) {
-        //   allWorlds[i] = (decodedData + 'LF');
-        // } else {
-        //   allWorlds[i] = decodedData;
+        // if (decodedData.includes('Dyson')) {
+        //   console.log('Dyson Sphere Found');
         // }
+        if (i < 1000) {
+          allWorlds[i] = (decodedData + 'LF');
+        } else {
+          allWorlds[i] = decodedData;
+        }
       }
 
-      //console.log(allWorlds);
+      console.log(allWorlds);
     }
   }
 
@@ -120,20 +120,39 @@ function App() {
     }
   }
 
+  function showNext() {
+    if (tokenId < 10000) {
+      setTokenId(tokenId + 1);
+      tokenURI();
+    }
+  }
+
+  function showPrevious() {
+    if (tokenId > 1) {
+      setTokenId(tokenId - 1);
+      tokenURI();
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <h2>Worlds Project</h2>
-        <p style={{fontSize: 18, width: 1000}}>Worlds is gate connected, randomly generated, (mostly) inhabited, planetary star systems created and stored on chain. Stats, images, and other functionality are intentionally omitted for others to interpret. Feel free to use Worlds in any way you want.</p>
+        <p style={{fontSize: 18, width: 1000}}>Worlds is randomly generated, often inhabited, or once inhabited, planetary star systems created and stored on chain. Stats, images, and other functionality are intentionally omitted for others to interpret. Feel free to use Worlds in any way you want.</p>
         <div>
-          <p style={{ fontSize: 16, display: 'inline-block'}}>TokenId</p>
+          <button style={{ margin: 10, display: 'inline-block' }} onClick={tokenURI}>Display Worlds with TokenId:</button>
           <input  style={{ margin: 10, display: 'inline-block' }} onChange={e => setTokenId(parseInt(e.target.value))} placeholder="0" />
         </div>
-        <button style={{ margin: 10 }} onClick={claim}>Claim Worlds with TokenId</button>
-        <button style={{ margin: 10 }} onClick={tokenURI}>Display Worlds with TokenId</button>
-        <button style={{ margin: 10 }} onClick={tokenURIString}>Console Log TokenURIString</button>
-        <button style={{ margin: 10 }} onClick={ownerOf}>Console Log Owner of TokenId</button>
-        <button style={{ margin: 10 }} onClick={logAllWorlds}>Console Log ALL Worlds</button>
+        <button style={{ margin: 10 }} onClick={claim}>Claim Worlds</button>
+
+        <div>
+          <button style={{ margin: 10, display: 'inline-block' }} onClick={showPrevious}>Prev</button>
+          <button style={{ margin: 10, display: 'inline-block' }} onClick={showNext}>Next</button>
+        </div>
+
+        {/* <button style={{ margin: 10 }} onClick={tokenURIString}>Console Log TokenURIString</button> */}
+        {/* <button style={{ margin: 10 }} onClick={ownerOf}>Console Log Owner of TokenId</button> */}
+        {/* <button style={{ margin: 10 }} onClick={logAllWorlds}>Console Log ALL Worlds</button> */}
         { renderWorlds() }
       </header>
     </div>

@@ -29,6 +29,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
     ropsten: {
       url: 'https://ropsten.infura.io/v3/05cbe6d33219430494a840bf1174e27c',
       accounts: [`0x${process.env.DEPLOY_ADDRESS_PRIVATE_KEY}`]
+    },
+    rinkeby: {
+      url: 'https://rinkeby.infura.io/v3/05cbe6d33219430494a840bf1174e27c',
+      accounts: [`0x${process.env.DEPLOY_ADDRESS_PRIVATE_KEY}`]
     }
   }
 };
