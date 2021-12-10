@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.9;
 
 /**
  * @dev Interface of the ERC165 standard, as defined in the
@@ -1838,7 +1838,7 @@ library Base64 {
  *      corresponding to the left and right parts of the string.
  */
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.9;
 
 library strings {
     struct slice {
