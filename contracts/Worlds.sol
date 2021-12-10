@@ -1417,156 +1417,71 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
     using strings for string;
     using strings for strings.slice;
 
-    uint8[] private numberOfWorlds = [
-        5,
-        5,
-        5,
-        6,
-        6,
-        6,
-        6,
-        6,
-        6,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        9,
-        9,
-        9,
-        9
-    ];
+    string private constant numbers =
+        "ZERO,ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE";
+    uint256 private constant numbersLength = 10;
 
-    string[] private numberToString = [
-        "ZERO",
-        "ONE",
-        "TWO",
-        "THREE",
-        "FOUR",
-        "FIVE",
-        "SIX",
-        "SEVEN",
-        "EIGHT",
-        "NINE"
-    ];
+    string private constant worldTypes =
+        "TERRESTRIAL,OCEAN,ICE,GAS,RARE,RARER,RAREST";
+    uint256 private constant worldTypesLength = 7;
 
-    string[] private worldTypes = [
-        "TERRESTRIAL",
-        "OCEAN",
-        "ICE",
-        "GAS",
-        "RARE",
-        "RARER",
-        "RAREST"
-    ];
+    string private constant terrestrialWorlds =
+        "Small Hot Terrestrial,Small Temperate Terrestrial,Small Cool Terrestrial,Medium Hot Terrestrial,Medium Temperate Terrestrial,Medium Cool Terrestrial,Large Hot Terrestrial,Large Temperate Terrestrial,Large Cool Terrestrial";
+    uint256 private constant terrestrialWorldsLength = 9;
 
-    string[] private terrestrialWorlds = [
-        "Small Hot Terrestrial",
-        "Small Temperate Terrestrial",
-        "Small Cool Terrestrial",
-        "Medium Hot Terrestrial",
-        "Medium Temperate Terrestrial",
-        "Medium Cool Terrestrial",
-        "Large Hot Terrestrial",
-        "Large Temperate Terrestrial",
-        "Large Cool Terrestrial"
-    ];
+    string private constant oceanWorlds =
+        "Small H2O Ocean World,Medium H2O Ocean World,Large H2O Ocean World";
+    uint256 private constant oceanWorldsLength = 3;
 
-    string[] private oceanWorlds = [
-        "Small H2O Ocean World",
-        "Medium H2O Ocean World",
-        "Large H2O Ocean World"
-    ];
+    string private constant iceWorlds =
+        "Small H2O Ice World,Medium H2O Ice World,Large H2O Ice World,Small CO2 NH3 Ice World,Medium CO2 NH3 Ice World,Large CO2 NH3 Ice World,Small CH4 Ice World,Medium CH4 Ice World,Large CH4 Ice World";
+    uint256 private constant iceWorldsLength = 9;
 
-    string[] private iceWorlds = [
-        "Small H2O Ice World",
-        "Medium H2O Ice World",
-        "Large H2O Ice World",
-        "Small CO2 NH3 Ice World",
-        "Medium CO2 NH3 Ice World",
-        "Large CO2 NH3 Ice World",
-        "Small CH4 Ice World",
-        "Medium CH4 Ice World",
-        "Large CH4 Ice World"
-    ];
+    string private constant gasWorlds =
+        "Small Type I Gas Giant,Medium Type I Gas Giant,Large Type I Gas Giant,Massive Type I Gas Giant,Super Massive Type I Gas Giant,Small Type II Gas Giant,Medium Type II Gas Giant,Large Type II Gas Giant,Massive Type II Gas Giant,Super Massive Type II Gas Giant,Small Type III Gas Giant,Medium Type III Gas Giant,Large Type III Gas Giant,Massive Type III Gas Giant,Super Massive Type III Gas Giant,Small Type IV Gas Giant,Medium Type IV Gas Giant,Large Type IV Gas Giant,Massive Type IV Gas Giant,Super Massive Type IV Gas Giant,Small Type V Gas Giant,Medium Type V Gas Giant,Large Type V Gas Giant,Massive Type V Gas Giant,Super Massive Type V Gas Giant";
+    uint256 private constant gasWorldsLength = 25;
 
-    string[] private gasWorlds = [
-        "Small Type I Gas Giant",
-        "Medium Type I Gas Giant",
-        "Large Type I Gas Giant",
-        "Massive Type I Gas Giant",
-        "Super Massive Type I Gas Giant",
-        "Small Type II Gas Giant",
-        "Medium Type II Gas Giant",
-        "Large Type II Gas Giant",
-        "Massive Type II Gas Giant",
-        "Super Massive Type II Gas Giant",
-        "Small Type III Gas Giant",
-        "Medium Type III Gas Giant",
-        "Large Type III Gas Giant",
-        "Massive Type III Gas Giant",
-        "Super Massive Type III Gas Giant",
-        "Small Type IV Gas Giant",
-        "Medium Type IV Gas Giant",
-        "Large Type IV Gas Giant",
-        "Massive Type IV Gas Giant",
-        "Super Massive Type IV Gas Giant",
-        "Small Type V Gas Giant",
-        "Medium Type V Gas Giant",
-        "Large Type V Gas Giant",
-        "Massive Type V Gas Giant",
-        "Super Massive Type V Gas Giant"
-    ];
+    string private constant rareWorlds =
+        "Small Lava World,Medium Lava World,Large Lava World,Small Chthonian World,Medium Chthonian World,Large Chthonian World,Small Desert World,Medium Desert World,Large Desert World,Small Hydrocarbon Ocean World,Medium Hydrocarbon Ocean World,Large Hydrocarbon Ocean World";
+    uint256 private constant rareWorldsLength = 12;
 
-    string[] private rareWorlds = [
-        "Small Lava World",
-        "Medium Lava World",
-        "Large Lava World",
-        "Small Chthonian World",
-        "Medium Chthonian World",
-        "Large Chthonian World",
-        "Small Desert World",
-        "Medium Desert World",
-        "Large Desert World",
-        "Small Hydrocarbon Ocean World",
-        "Medium Hydrocarbon Ocean World",
-        "Large Hydrocarbon Ocean World"
-    ];
+    string private constant rarerWorlds =
+        "Small Orbital Sphere,Medium Orbital Sphere,Large Orbital Sphere,Small Orbital Ring,Medium Orbital Ring,Large Orbital Ring";
+    uint256 private constant rarerWorldsLength = 6;
 
-    string[] private rarerWorlds = [
-        "Small Orbital Sphere",
-        "Medium Orbital Sphere",
-        "Large Orbital Sphere",
-        "Small Orbital Ring",
-        "Medium Orbital Ring",
-        "Large Orbital Ring"
-    ];
-
-    string[] private rarestWorlds = [
-        "Small Shellworld",
-        "Medium Shellworld",
-        "Large Shellworld",
-        "Dyson Sphere"
-    ];
+    string private constant rarestWorlds =
+        "Small Shellworld,Medium Shellworld,Large Shellworld,Dyson Sphere";
+    uint256 private constant rarestWorldsLength = 4;
 
     function random(string memory input) internal pure returns (uint256) {
         return uint256(keccak256(abi.encodePacked(input)));
     }
 
+    function getNumberOfWorlds(uint256 tokenId) public pure returns (uint8) {
+        uint256 rand = random(
+            string(
+                abi.encodePacked("NUMBER_OF_WORLDS", Strings.toString(tokenId))
+            )
+        );
+        uint8 numWorlds = 9;
+
+        uint256 chance = rand & 101;
+
+        if (chance < 11) {
+            numWorlds = 5;
+        } else if (chance < 31) {
+            numWorlds = 6;
+        } else if (chance < 59) {
+            numWorlds = 7;
+        } else if (chance < 87) {
+            numWorlds = 8;
+        }
+
+        return numWorlds;
+    }
+
     function getSystemId(uint256 tokenId) public pure returns (string memory) {
-        string memory systemNumber = toString(tokenId);
+        string memory systemNumber = Strings.toString(tokenId);
         if (tokenId < 10) {
             systemNumber = string(abi.encodePacked("000", systemNumber));
         } else if (tokenId < 100) {
@@ -1578,36 +1493,26 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
         return string(abi.encodePacked("SN-", systemNumber));
     }
 
-    function getNumberOfWorlds(uint256 tokenId) public view returns (uint8) {
-        uint256 rand = random(
-            string(abi.encodePacked("NUMBER_OF_WORLDS", toString(tokenId)))
-        );
-        uint8 numWorlds = numberOfWorlds[rand % numberOfWorlds.length];
-
-        return numWorlds;
-    }
-
     function getWorld(
         uint256 tokenId,
         uint256 worldNumberIndex,
         uint256 worldTypeIndex,
-        string[] memory sourceArray,
+        string memory sourceCSV,
+        uint256 sourceCSVLength,
         uint256 inhabitedThreshold,
         uint256 abandonedThreshold
-    ) public view returns (string memory) {
+    ) public pure returns (string memory) {
         uint256 rand = random(
             string(
                 abi.encodePacked(
-                    worldTypes[worldTypeIndex],
-                    toString(tokenId),
-                    numberToString[worldNumberIndex],
-                    toString(inhabitedThreshold),
-                    toString(abandonedThreshold)
+                    getItemFromCSV(worldTypes, worldTypeIndex),
+                    Strings.toString(tokenId),
+                    getItemFromCSV(numbers, worldNumberIndex)
                 )
             )
         );
 
-        string memory world = sourceArray[rand % sourceArray.length];
+        string memory world = getItemFromCSV(sourceCSV, rand % sourceCSVLength);
 
         uint256 chance = rand % 101;
 
@@ -1620,7 +1525,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
         return world;
     }
 
-    function getWorlds(uint256 tokenId) public view returns (string[] memory) {
+    function getWorlds(uint256 tokenId) public pure returns (string[] memory) {
         uint8 numWorlds = getNumberOfWorlds(tokenId);
 
         string[] memory worlds = new string[](numWorlds);
@@ -1629,8 +1534,8 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
             uint256 rand = random(
                 string(
                     abi.encodePacked(
-                        numberToString[worldIndex],
-                        toString(tokenId)
+                        getItemFromCSV(numbers, worldIndex),
+                        Strings.toString(tokenId)
                     )
                 )
             );
@@ -1645,21 +1550,70 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
                     worldIndex,
                     0,
                     terrestrialWorlds,
+                    terrestrialWorldsLength,
                     41,
                     71
                 );
             } else if (chance < 46) {
-                world = getWorld(tokenId, worldIndex, 1, oceanWorlds, 21, 36);
+                world = getWorld(
+                    tokenId,
+                    worldIndex,
+                    1,
+                    oceanWorlds,
+                    oceanWorldsLength,
+                    21,
+                    36
+                );
             } else if (chance < 63) {
-                world = getWorld(tokenId, worldIndex, 2, iceWorlds, 9, 20);
+                world = getWorld(
+                    tokenId,
+                    worldIndex,
+                    2,
+                    iceWorlds,
+                    iceWorldsLength,
+                    9,
+                    20
+                );
             } else if (chance < 93) {
-                world = getWorld(tokenId, worldIndex, 3, gasWorlds, 3, 6);
+                world = getWorld(
+                    tokenId,
+                    worldIndex,
+                    3,
+                    gasWorlds,
+                    gasWorldsLength,
+                    3,
+                    6
+                );
             } else if (chance < 97) {
-                world = getWorld(tokenId, worldIndex, 4, rareWorlds, 7, 23);
+                world = getWorld(
+                    tokenId,
+                    worldIndex,
+                    4,
+                    rareWorlds,
+                    rareWorldsLength,
+                    7,
+                    23
+                );
             } else if (chance < 100) {
-                world = getWorld(tokenId, worldIndex, 5, rarerWorlds, 71, 101);
+                world = getWorld(
+                    tokenId,
+                    worldIndex,
+                    5,
+                    rarerWorlds,
+                    rarerWorldsLength,
+                    71,
+                    101
+                );
             } else if (chance == 100) {
-                world = getWorld(tokenId, worldIndex, 6, rarestWorlds, 71, 101);
+                world = getWorld(
+                    tokenId,
+                    worldIndex,
+                    6,
+                    rarestWorlds,
+                    rarestWorldsLength,
+                    71,
+                    101
+                );
             }
 
             if (
@@ -1688,7 +1642,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
 
     function tokenURI(uint256 tokenId)
         public
-        view
+        pure
         override
         returns (string memory)
     {
@@ -1715,7 +1669,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
             string memory world = worlds[i];
             uint256 multiplier = i + 3;
             uint256 yValue = 20 * multiplier;
-            string memory yString = toString(yValue);
+            string memory yString = Strings.toString(yValue);
             string memory closing = (i != (worlds.length - 1))
                 ? string(
                     abi.encodePacked(
@@ -1734,7 +1688,7 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
                 string(
                     abi.encodePacked(
                         '{"name": "World #',
-                        toString(tokenId),
+                        Strings.toString(tokenId),
                         '", "description": "Worlds is randomly generated star systems created and stored on chain. Stats, images, and other functionality are intentionally omitted for others to interpret. Feel free to use Worlds in any way you want.", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(output)),
                         '"}'
@@ -1772,28 +1726,6 @@ contract Worlds is ERC721Enumerable, ReentrancyGuard, Ownable {
             item = strSlice.split(separator);
         }
         return item.toString();
-    }
-
-    function toString(uint256 value) internal pure returns (string memory) {
-        // Inspired by OraclizeAPI's implementation - MIT license
-        // https://github.com/oraclize/ethereum-api/blob/b42146b063c7d6ee1358846c198246239e9360e8/oraclizeAPI_0.4.25.sol
-
-        if (value == 0) {
-            return "0";
-        }
-        uint256 temp = value;
-        uint256 digits;
-        while (temp != 0) {
-            digits++;
-            temp /= 10;
-        }
-        bytes memory buffer = new bytes(digits);
-        while (value != 0) {
-            digits -= 1;
-            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
-            value /= 10;
-        }
-        return string(buffer);
     }
 
     constructor() ERC721("Worlds", "WORLDS") Ownable() {}
@@ -1920,7 +1852,7 @@ library strings {
         uint256 len
     ) private pure {
         // Copy word-length chunks while possible
-        for (; len >= 32; len -= 32) {
+        for (; len > 32; len -= 32) {
             assembly {
                 mstore(dest, mload(src))
             }
@@ -2036,8 +1968,10 @@ library strings {
         slice memory token
     ) internal pure returns (slice memory) {
         uint256 ptr = findPtr(self._len, self._ptr, needle._len, needle._ptr);
+
         token._ptr = self._ptr;
         token._len = ptr - self._ptr;
+
         if (ptr == self._ptr + self._len) {
             // Not found
             self._len = 0;
@@ -2045,6 +1979,7 @@ library strings {
             self._len -= token._len + needle._len;
             self._ptr = ptr + needle._len;
         }
+
         return token;
     }
 
