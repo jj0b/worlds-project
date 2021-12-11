@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ethers } from 'ethers'
 import Worlds from './artifacts/contracts/Worlds.sol/Worlds.json'
 
-const worldsAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const worldsAddress = "0x4E0247697f70dfF1eA660cBA484A2Aaf333047A5";
 const tokenURIHeaderLength = "data:application/json;base64,".length;
 const tokenURIStringHeaderLength = "data:text/plain;base64,".length;
 
@@ -24,6 +24,19 @@ function App() {
       const contract = new ethers.Contract(worldsAddress, Worlds.abi, signer);
       console.log(`Attempting to claim tokenId: ${tokenId}`);
       const transaction = await contract.claim(tokenId);
+      await transaction.wait();
+      console.log(transaction);
+    }
+  }
+
+  async function ownerClaim() {
+    if (typeof window.ethereum !== 'undefined') {
+      await requestAccount();
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(worldsAddress, Worlds.abi, signer);
+      console.log(`Attempting to owner claim tokenId: ${tokenId}`);
+      const transaction = await contract.ownerClaim(tokenId);
       await transaction.wait();
       console.log(transaction);
     }
@@ -144,6 +157,7 @@ function App() {
           <input  style={{ margin: 10, display: 'inline-block' }} onChange={e => setTokenId(parseInt(e.target.value))} placeholder="0" />
         </div>
         <button style={{ margin: 10 }} onClick={claim}>Claim Worlds</button>
+        <button style={{ margin: 10 }} onClick={ownerClaim}>Owner Claim Worlds</button>
 
         <div>
           <button style={{ margin: 10, display: 'inline-block' }} onClick={showPrevious}>Prev</button>
