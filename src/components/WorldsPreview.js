@@ -1,4 +1,4 @@
-import '../App.css';
+import '../App.scss';
 import { useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers';
 import Worlds from '../artifacts/contracts/Worlds.sol/Worlds.json';
@@ -75,7 +75,9 @@ function WorldsPreview(props) {
 
   function renderBadge() {
     if (claimed) {
-      return <span className="badge badge-top-right"></span>;
+      return <span className="claimedBadge badge-top-right"></span>;
+    } else {
+      return <span className="unclaimedBadge badge-top-right"></span>;
     }
   }
 

@@ -175,8 +175,140 @@ p {
   transition: opacity 1s ease;
 }
 
-.badge {
-  --badge-width: 200px;
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+
+  @return $x1;
+}
+
+.claimedBadge {
+  $width: 200px;
+  $height: 30px;
+  $containerSide: $width;
+  $newOrigin: ($width - $height) / (2 * sqrt(2));
+  $rotateTL: -45deg;
+  $rotateTR: 45deg;
+
+  position: absolute;
+  width: $containerSide;
+  height: $containerSide;
+  overflow: hidden;
+
+  &::before {
+    content: 'Claimed';
+    background: red;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    display: block;
+    position: relative;
+    width: $width;
+    height: $height;
+    line-height: $height;
+    text-align: center;
+    cursor: default;
+  }
+
+  &.badge-top-right {
+    top: 0;
+    right: 0;
+
+    &::before {
+      top: $newOrigin - ($height / 2);
+      right: $newOrigin - ($width / 2);
+      -webkit-transform: rotate($rotateTR);
+      -moz-transform: rotate($rotateTR);
+      -ms-transform: rotate($rotateTR);
+      -o-transform: rotate($rotateTR);
+      transform: rotate($rotateTR);
+    }
+  }
+
+  &.badge-top-left {
+    top: 0;
+    left: 0;
+
+    &:before {
+      top: $newOrigin - ($height / 2);
+      left: $newOrigin - ($width / 2);
+      -webkit-transform: rotate($rotateTL);
+      -moz-transform: rotate($rotateTL);
+      -ms-transform: rotate($rotateTL);
+      -o-transform: rotate($rotateTL);
+      transform: rotate($rotateTL);
+    }
+  }
+}
+
+.unclaimedBadge {
+  $width: 200px;
+  $height: 30px;
+  $containerSide: $width;
+  $newOrigin: ($width - $height) / (2 * sqrt(2));
+  $rotateTL: -45deg;
+  $rotateTR: 45deg;
+
+  position: absolute;
+  width: $containerSide;
+  height: $containerSide;
+  overflow: hidden;
+
+  &::before {
+    content: 'Available';
+    background: #9c8ff2;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    display: block;
+    position: relative;
+    width: $width;
+    height: $height;
+    line-height: $height;
+    text-align: center;
+    cursor: default;
+  }
+
+  &.badge-top-right {
+    top: 0;
+    right: 0;
+
+    &::before {
+      top: $newOrigin - ($height / 2);
+      right: $newOrigin - ($width / 2);
+      -webkit-transform: rotate($rotateTR);
+      -moz-transform: rotate($rotateTR);
+      -ms-transform: rotate($rotateTR);
+      -o-transform: rotate($rotateTR);
+      transform: rotate($rotateTR);
+    }
+  }
+
+  &.badge-top-left {
+    top: 0;
+    left: 0;
+
+    &:before {
+      top: $newOrigin - ($height / 2);
+      left: $newOrigin - ($width / 2);
+      -webkit-transform: rotate($rotateTL);
+      -moz-transform: rotate($rotateTL);
+      -ms-transform: rotate($rotateTL);
+      -o-transform: rotate($rotateTL);
+      transform: rotate($rotateTL);
+    }
+  }
+}
+
+/* .badge {
+  --badge-width: 00px;
   --badge-height: 24px;
   --container-side: var(--badge-width);
   --new-origin: (var(--badge-width) - var(--badge-height) / (2 * sqrt(2)));
@@ -217,7 +349,7 @@ p {
   -ms-transform: rotate(var(--rotate-TR));
   -o-transform: rotate(var(--rotate-TR));
   transform: rotate(var(--rotate-TR));
-}
+} */
 
 /* Extra small devices (phones, 640px and down) */
 @media only screen and (max-width: 640px) {

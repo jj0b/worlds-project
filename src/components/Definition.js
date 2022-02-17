@@ -1,4 +1,4 @@
-import '../App.css';
+import '../App.scss';
 
 function Definition(props) {
   return (

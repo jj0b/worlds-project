@@ -1,4 +1,4 @@
-import '../App.css';
+import '../App.scss';
 import GitHub from '../img/github.svg';
 
 function Footer(props) {

@@ -1,4 +1,4 @@
-import '../App.css';
+import '../App.scss';
 import Twitter from '../img/twitter.svg';
 import OpenSea from '../img/opensea.svg';
 

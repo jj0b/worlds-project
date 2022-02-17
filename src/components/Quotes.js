@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import '../App.css';
+import '../App.scss';
 
 const quotes = [
   'What mysteries might we uncover in the dark, ruinous depths of an alien civilization on a Hydrocarbon Ocean World?',
