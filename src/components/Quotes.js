@@ -30,24 +30,24 @@ function Quotes(props) {
   );
 
   const [fadeProp, setFadeProp] = useState({
-    fade: 'fade-in',
+    fade: 'fade-in TextBlock',
   });
 
   useEffect(() => {
     const timeout = setInterval(
       () => {
-        if (fadeProp.fade === 'fade-in') {
+        if (fadeProp.fade === 'fade-in TextBlock') {
           setFadeProp({
-            fade: 'fade-out',
+            fade: 'fade-out TextBlock',
           });
         } else {
           setQuoteIndex(Math.floor(Math.random() * quotes.length));
           setFadeProp({
-            fade: 'fade-in',
+            fade: 'fade-in TextBlock',
           });
         }
       },
-      fadeProp.fade === 'fade-in' ? 10000 : 1000
+      fadeProp.fade === 'fade-in TextBlock' ? 10000 : 1000
     );
 
     return () => clearInterval(timeout);

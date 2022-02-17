@@ -5,7 +5,7 @@ function Header(props) {
     <div className="Header">
       <h2>Worlds</h2>
       <div>
-        <p>
+        <p className="TextBlock">
           Worlds is randomly generated, often inhabited, or once inhabited,
           planetary star systems created and stored on chain. Stats, images, and
           other functionality are intentionally omitted for others to interpret.

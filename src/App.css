@@ -15,7 +15,10 @@
   align-items: center;
   text-align: center;
   justify-content: center;
-  /* font-size: 26px; */
+}
+
+h2 {
+  font-size: 2.6rem;
 }
 
 .Nav {
@@ -32,6 +35,7 @@
 
 .Definition {
   display: flex;
+  padding-bottom: 30px;
   flex-direction: column;
   flex: 1 1 auto;
   overflow-y: auto;
@@ -50,6 +54,7 @@
   text-align: center;
   justify-content: center;
   background-color: #1f2833;
+  padding-bottom: 25px;
 }
 
 .WorldsPreview {
@@ -66,6 +71,7 @@
 .Controls {
   display: flex;
   justify-content: space-between;
+  padding-top: 25px;
 }
 
 .Quotes {
@@ -93,14 +99,14 @@
 
 .ClaimButton {
   background-color: #1f2833;
-  color: #66fcf1;
+  color: white;
   font-size: 20px;
   padding: 10px 60px;
   border-radius: 5px;
   margin: 20px 0px;
   cursor: pointer;
   border-style: solid;
-  border-color: #66fcf1;
+  border-color: white;
 }
 
 .ClaimButton:hover {
@@ -117,13 +123,14 @@
 
 .NavButton {
   background-color: #1f2833;
-  color: #66fcf1;
+  color: white;
   font-size: 20px;
   padding: 5px 15px;
   border-radius: 5px;
   cursor: pointer;
   border-style: solid;
-  border-color: #66fcf1;
+  border-color: white;
+  display: inline-block;
 }
 
 .NavButton:hover {
@@ -138,63 +145,17 @@
   border-color: #1f2833;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-  .WorldsImage {
-    width: 90vw;
-    height: auto;
-    margin: 20px;
-    border-radius: 10px;
-  }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  .WorldsImage {
-    width: 65vw;
-    height: auto;
-    margin: 20px;
-    background-color: black;
-    border-radius: 10px;
-  }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .WorldsImage {
-    width: 45vw;
-    height: auto;
-    margin: 20px;
-    background-color: black;
-    border-radius: 10px;
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  .WorldsImage {
-    width: 35vw;
-    height: auto;
-    margin: 20px;
-    background-color: black;
-    border-radius: 10px;
-  }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  .WorldsImage {
-    width: 25vw;
-    height: auto;
-    margin: 20px;
-    background-color: black;
-    border-radius: 10px;
-  }
-}
-
 input {
-  outline-color: #45a29e;
+  border: 2px solid #66fcf1;
+  outline: none;
+  box-shadow: none;
   border-radius: 5px;
+  background-color: #1f2833;
+  color: white;
+  margin-inline: 10px;
+  font-size: 1rem;
+  width: 80px;
+  text-align: center;
 }
 
 body {
@@ -212,4 +173,139 @@ p {
 .fade-out {
   opacity: 0;
   transition: opacity 1s ease;
+}
+
+:root {
+  --badge-width: 200px;
+  --badge-height: 24px;
+  --container-side: var(--badge-width);
+  --new-origin: (var(--badge-width) - var(--badge-height) / (2 * sqrt(2)));
+  --rotate-TR: 45deg;
+}
+
+.badge {
+  position: absolute;
+  width: var(--container-side);
+  height: var(--container-side);
+  overflow: hidden;
+}
+
+.badge::before {
+  content: 'Claimed';
+  background: red;
+  color: #fff;
+  font-weight: bold;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 0.8rem;
+  display: block;
+  position: relative;
+  width: var(--badge-width);
+  height: var(--badge-height);
+  line-height: var(--badge-height);
+  text-align: center;
+  cursor: default;
+}
+
+.badge.badge-top-right {
+  top: 0;
+  right: 0;
+}
+
+.badge.badge-top-right::before {
+  top: var(--new-origin) - (var(--badge-height) / 2);
+  right: var(--new-origin) - (var(--badge-width) / 2);
+  -webkit-transform: rotate(var(--rotate-TR));
+  -moz-transform: rotate(var(--rotate-TR));
+  -ms-transform: rotate(var(--rotate-TR));
+  -o-transform: rotate(var(--rotate-TR));
+  transform: rotate(var(--rotate-TR));
+}
+
+/* Extra small devices (phones, 640px and down) */
+@media only screen and (max-width: 640px) {
+  .WorldsImage {
+    width: 84vw;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .TextBlock {
+    width: 86vw;
+    font-size: 1.2rem;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 640px and up) */
+@media only screen and (min-width: 640px) {
+  .WorldsImage {
+    width: 60vw;
+    height: auto;
+    background-color: black;
+    border-radius: 10px;
+  }
+
+  .TextBlock {
+    width: 76vw;
+    font-size: 1.2rem;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .WorldsImage {
+    width: 44vw;
+    height: auto;
+    background-color: black;
+    border-radius: 10px;
+  }
+
+  .TextBlock {
+    width: 68vw;
+    font-size: 1.2rem;
+  }
+}
+
+/* Large devices (laptops/desktops, 1024px and up) */
+@media only screen and (min-width: 1024px) {
+  .WorldsImage {
+    width: 34vw;
+    height: auto;
+    background-color: black;
+    border-radius: 10px;
+  }
+
+  .TextBlock {
+    width: 56vw;
+    font-size: 1.2rem;
+  }
+}
+
+/* Large devices (large laptops and desktops, 1280px and up) */
+@media only screen and (min-width: 1280px) {
+  .WorldsImage {
+    width: 30vw;
+    height: auto;
+    background-color: black;
+    border-radius: 10px;
+  }
+
+  .TextBlock {
+    width: 48vw;
+    font-size: 1.2rem;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1536px and up) */
+@media only screen and (min-width: 1536px) {
+  .WorldsImage {
+    width: 26vw;
+    height: auto;
+    background-color: black;
+    border-radius: 10px;
+  }
+
+  .TextBlock {
+    width: 44vw;
+    font-size: 1.2rem;
+  }
 }
