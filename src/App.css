@@ -175,15 +175,13 @@ p {
   transition: opacity 1s ease;
 }
 
-:root {
+.badge {
   --badge-width: 200px;
   --badge-height: 24px;
   --container-side: var(--badge-width);
   --new-origin: (var(--badge-width) - var(--badge-height) / (2 * sqrt(2)));
   --rotate-TR: 45deg;
-}
 
-.badge {
   position: absolute;
   width: var(--container-side);
   height: var(--container-side);
