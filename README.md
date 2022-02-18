@@ -1,15 +1,5 @@
-# Basic Sample Hardhat Project
+# Worlds Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+This project includes an Ethereum smart contract written in Solidity that generates NFTs, as well as a React web app that through Ethers.js can connect to that contract, allowing visitors to the site to connect their Ethereum wallet, such as MetaMask, and then browse and even claim an NFT for themselves. The contract is compiled by and can be deployed with Hardhat. 
 
-Try running some of the following tasks:
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
