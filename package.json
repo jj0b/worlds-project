@@ -2,6 +2,7 @@
   "name": "worlds-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jj0b.github.io/worlds-project.github.io/",
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
@@ -12,6 +13,7 @@
     "dotenv": "^10.0.0",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.5.1",
+    "gh-pages": "^3.2.3",
     "hardhat": "^2.6.8",
     "react": "^17.0.2",
     "react-backdrop-filter": "^2.1.0",
@@ -21,6 +23,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
