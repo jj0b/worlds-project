@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/worlds-project/static/css/main.b3b25f18.chunk.css",
-    "main.js": "/worlds-project/static/js/main.9691b798.chunk.js",
-    "main.js.map": "/worlds-project/static/js/main.9691b798.chunk.js.map",
-    "runtime-main.js": "/worlds-project/static/js/runtime-main.ffcfbf06.js",
-    "runtime-main.js.map": "/worlds-project/static/js/runtime-main.ffcfbf06.js.map",
-    "static/js/2.5dc33466.chunk.js": "/worlds-project/static/js/2.5dc33466.chunk.js",
-    "static/js/2.5dc33466.chunk.js.map": "/worlds-project/static/js/2.5dc33466.chunk.js.map",
-    "static/js/3.52273677.chunk.js": "/worlds-project/static/js/3.52273677.chunk.js",
-    "static/js/3.52273677.chunk.js.map": "/worlds-project/static/js/3.52273677.chunk.js.map",
-    "index.html": "/worlds-project/index.html",
-    "static/css/main.b3b25f18.chunk.css.map": "/worlds-project/static/css/main.b3b25f18.chunk.css.map",
-    "static/js/2.5dc33466.chunk.js.LICENSE.txt": "/worlds-project/static/js/2.5dc33466.chunk.js.LICENSE.txt",
-    "static/media/App.scss": "/worlds-project/static/media/StarField.9f92a147.png",
-    "static/media/etherscan-logo-circle.66d539f5.svg": "/worlds-project/static/media/etherscan-logo-circle.66d539f5.svg",
-    "static/media/github.7ba8eebb.svg": "/worlds-project/static/media/github.7ba8eebb.svg",
-    "static/media/opensea.575f244c.svg": "/worlds-project/static/media/opensea.575f244c.svg",
-    "static/media/twitter.4c5d7370.svg": "/worlds-project/static/media/twitter.4c5d7370.svg"
+    "main.css": "/static/css/main.c0f8a5b0.chunk.css",
+    "main.js": "/static/js/main.9691b798.chunk.js",
+    "main.js.map": "/static/js/main.9691b798.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8b943706.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8b943706.js.map",
+    "static/js/2.5dc33466.chunk.js": "/static/js/2.5dc33466.chunk.js",
+    "static/js/2.5dc33466.chunk.js.map": "/static/js/2.5dc33466.chunk.js.map",
+    "static/js/3.52273677.chunk.js": "/static/js/3.52273677.chunk.js",
+    "static/js/3.52273677.chunk.js.map": "/static/js/3.52273677.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.c0f8a5b0.chunk.css.map": "/static/css/main.c0f8a5b0.chunk.css.map",
+    "static/js/2.5dc33466.chunk.js.LICENSE.txt": "/static/js/2.5dc33466.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/static/media/StarField.9f92a147.png",
+    "static/media/etherscan-logo-circle.66d539f5.svg": "/static/media/etherscan-logo-circle.66d539f5.svg",
+    "static/media/github.7ba8eebb.svg": "/static/media/github.7ba8eebb.svg",
+    "static/media/opensea.575f244c.svg": "/static/media/opensea.575f244c.svg",
+    "static/media/twitter.4c5d7370.svg": "/static/media/twitter.4c5d7370.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.ffcfbf06.js",
+    "static/js/runtime-main.8b943706.js",
     "static/js/2.5dc33466.chunk.js",
-    "static/css/main.b3b25f18.chunk.css",
+    "static/css/main.c0f8a5b0.chunk.css",
     "static/js/main.9691b798.chunk.js"
   ]
 }
