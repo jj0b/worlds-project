@@ -5,7 +5,7 @@ function Footer(props) {
   return (
     <div className="Footer">
       <div>
-        <a href="https://github.com/jj0b">
+        <a href="https://github.com/jj0b/worlds-project">
           <img
             alt="GitHub Logo"
             src={GitHub}

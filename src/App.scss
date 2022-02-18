@@ -15,6 +15,7 @@
   align-items: center;
   text-align: center;
   justify-content: center;
+  padding-bottom: 30px;
 }
 
 h2 {
@@ -109,12 +110,6 @@ h2 {
   border-color: white;
 }
 
-.ClaimButton:hover {
-  background-color: #c5c6c7;
-  color: #1f2833;
-  border-color: #0b0c10;
-}
-
 .ClaimButton:active {
   background-color: #45a29e;
   color: #1f2833;
@@ -133,16 +128,24 @@ h2 {
   display: inline-block;
 }
 
-.NavButton:hover {
-  background-color: #c5c6c7;
-  color: #1f2833;
-  border-color: #0b0c10;
-}
-
 .NavButton:active {
   background-color: #45a29e;
   color: #1f2833;
   border-color: #1f2833;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ClaimButton:hover {
+    background-color: #c5c6c7;
+    color: #1f2833;
+    border-color: #0b0c10;
+  }
+
+  .NavButton:hover {
+    background-color: #c5c6c7;
+    color: #1f2833;
+    border-color: #0b0c10;
+  }
 }
 
 input {
@@ -188,8 +191,8 @@ p {
 }
 
 .claimedBadge {
-  $width: 200px;
-  $height: 30px;
+  $width: 140px;
+  $height: 24px;
   $containerSide: $width;
   $newOrigin: ($width - $height) / (2 * sqrt(2));
   $rotateTL: -45deg;
@@ -248,8 +251,8 @@ p {
 }
 
 .unclaimedBadge {
-  $width: 200px;
-  $height: 30px;
+  $width: 140px;
+  $height: 24px;
   $containerSide: $width;
   $newOrigin: ($width - $height) / (2 * sqrt(2));
   $rotateTL: -45deg;
@@ -307,50 +310,6 @@ p {
   }
 }
 
-/* .badge {
-  --badge-width: 00px;
-  --badge-height: 24px;
-  --container-side: var(--badge-width);
-  --new-origin: (var(--badge-width) - var(--badge-height) / (2 * sqrt(2)));
-  --rotate-TR: 45deg;
-
-  position: absolute;
-  width: var(--container-side);
-  height: var(--container-side);
-  overflow: hidden;
-}
-
-.badge::before {
-  content: 'Claimed';
-  background: red;
-  color: #fff;
-  font-weight: bold;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 0.8rem;
-  display: block;
-  position: relative;
-  width: var(--badge-width);
-  height: var(--badge-height);
-  line-height: var(--badge-height);
-  text-align: center;
-  cursor: default;
-}
-
-.badge.badge-top-right {
-  top: 0;
-  right: 0;
-}
-
-.badge.badge-top-right::before {
-  top: var(--new-origin) - (var(--badge-height) / 2);
-  right: var(--new-origin) - (var(--badge-width) / 2);
-  -webkit-transform: rotate(var(--rotate-TR));
-  -moz-transform: rotate(var(--rotate-TR));
-  -ms-transform: rotate(var(--rotate-TR));
-  -o-transform: rotate(var(--rotate-TR));
-  transform: rotate(var(--rotate-TR));
-} */
-
 /* Extra small devices (phones, 640px and down) */
 @media only screen and (max-width: 640px) {
   .WorldsImage {
@@ -362,6 +321,11 @@ p {
   .TextBlock {
     width: 86vw;
     font-size: 1.2rem;
+  }
+
+  .QuoteBlock {
+    width: 86vw;
+    font-size: 1.3rem;
   }
 }
 
@@ -378,6 +342,11 @@ p {
     width: 76vw;
     font-size: 1.2rem;
   }
+
+  .QuoteBlock {
+    width: 76vw;
+    font-size: 1.3rem;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -392,6 +361,11 @@ p {
   .TextBlock {
     width: 68vw;
     font-size: 1.2rem;
+  }
+
+  .QuoteBlock {
+    width: 68vw;
+    font-size: 1.3rem;
   }
 }
 
@@ -408,6 +382,11 @@ p {
     width: 56vw;
     font-size: 1.2rem;
   }
+
+  .QuoteBlock {
+    width: 56vw;
+    font-size: 1.3rem;
+  }
 }
 
 /* Large devices (large laptops and desktops, 1280px and up) */
@@ -423,6 +402,11 @@ p {
     width: 48vw;
     font-size: 1.2rem;
   }
+
+  .QuoteBlock {
+    width: 48vw;
+    font-size: 1.3rem;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1536px and up) */
@@ -437,5 +421,10 @@ p {
   .TextBlock {
     width: 44vw;
     font-size: 1.2rem;
+  }
+
+  .QuoteBlock {
+    width: 44vw;
+    font-size: 1.3rem;
   }
 }

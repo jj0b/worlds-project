@@ -9,7 +9,7 @@ const quotes = [
 
   'What might an advanced alien species inhabiting a Super Massive Type III Gas Giant have to teach us?',
 
-  'What percentage of inhabitants of Ring Worlds take exotic vacations to nearby planets and moons?',
+  'What percentage of Ring World inhabitants go on exotic vacations to nearby planets and moons?',
 
   'What histories might exist in a system where all the moons and planets are abandoned, but civilization flourishes in a Shellworld?',
 
@@ -17,7 +17,7 @@ const quotes = [
 
   'What led to the ruin of these abandoned worlds? War? Famine? Exponential tech? The promise of a better life elsewhere in the galaxy?',
 
-  'What explains a system of inhabited worlds of fundamentally different environments? Did one species bend the various worlds to their will? Did they adapt their biology? Multiple immigration events? Diverse panspermia and parallel evolution?',
+  'What explains a system of inhabited worlds of fundamentally different environments? Did one species bend each of the worlds to their will? Did they adapt their biology? Multiple immigration events? Diverse panspermia and parallel evolution?',
 
   'Could we, from this Hot Terrestrial paradise, visit friends beneath the frigid surface of an H2O Ice World?',
 
@@ -30,24 +30,24 @@ function Quotes(props) {
   );
 
   const [fadeProp, setFadeProp] = useState({
-    fade: 'fade-in TextBlock',
+    fade: 'fade-in QuoteBlock',
   });
 
   useEffect(() => {
     const timeout = setInterval(
       () => {
-        if (fadeProp.fade === 'fade-in TextBlock') {
+        if (fadeProp.fade === 'fade-in QuoteBlock') {
           setFadeProp({
-            fade: 'fade-out TextBlock',
+            fade: 'fade-out QuoteBlock',
           });
         } else {
           setQuoteIndex(Math.floor(Math.random() * quotes.length));
           setFadeProp({
-            fade: 'fade-in TextBlock',
+            fade: 'fade-in QuoteBlock',
           });
         }
       },
-      fadeProp.fade === 'fade-in TextBlock' ? 10000 : 1000
+      fadeProp.fade === 'fade-in QuoteBlock' ? 10000 : 1000
     );
 
     return () => clearInterval(timeout);
