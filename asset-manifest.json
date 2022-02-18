@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/worlds-project.github.io/static/css/main.a3c30bcd.chunk.css",
+    "main.js": "/worlds-project.github.io/static/js/main.f47472f6.chunk.js",
+    "main.js.map": "/worlds-project.github.io/static/js/main.f47472f6.chunk.js.map",
+    "runtime-main.js": "/worlds-project.github.io/static/js/runtime-main.fd27981d.js",
+    "runtime-main.js.map": "/worlds-project.github.io/static/js/runtime-main.fd27981d.js.map",
+    "static/js/2.5dc33466.chunk.js": "/worlds-project.github.io/static/js/2.5dc33466.chunk.js",
+    "static/js/2.5dc33466.chunk.js.map": "/worlds-project.github.io/static/js/2.5dc33466.chunk.js.map",
+    "static/js/3.52273677.chunk.js": "/worlds-project.github.io/static/js/3.52273677.chunk.js",
+    "static/js/3.52273677.chunk.js.map": "/worlds-project.github.io/static/js/3.52273677.chunk.js.map",
+    "index.html": "/worlds-project.github.io/index.html",
+    "static/css/main.a3c30bcd.chunk.css.map": "/worlds-project.github.io/static/css/main.a3c30bcd.chunk.css.map",
+    "static/js/2.5dc33466.chunk.js.LICENSE.txt": "/worlds-project.github.io/static/js/2.5dc33466.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/worlds-project.github.io/static/media/StarField.9f92a147.png",
+    "static/media/github.7ba8eebb.svg": "/worlds-project.github.io/static/media/github.7ba8eebb.svg",
+    "static/media/opensea.575f244c.svg": "/worlds-project.github.io/static/media/opensea.575f244c.svg",
+    "static/media/twitter.4c5d7370.svg": "/worlds-project.github.io/static/media/twitter.4c5d7370.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fd27981d.js",
+    "static/js/2.5dc33466.chunk.js",
+    "static/css/main.a3c30bcd.chunk.css",
+    "static/js/main.f47472f6.chunk.js"
+  ]
+}
