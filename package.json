@@ -1,8 +1,7 @@
 {
   "name": "worlds-project",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "https://jj0b.github.io/worlds-project.github.io/",
+  "homepage": "https://jj0b.github.io/worlds-project",
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
