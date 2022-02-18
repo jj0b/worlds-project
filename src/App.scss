@@ -183,7 +183,7 @@ p {
   $x1: $x0;
 
   @for $i from 1 through 10 {
-    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x1: $x0 - calc(($x0 * $x0 - abs($r)) / (2 * $x0));
     $x0: $x1;
   }
 
@@ -194,7 +194,7 @@ p {
   $width: 140px;
   $height: 24px;
   $containerSide: $width;
-  $newOrigin: ($width - $height) / (2 * sqrt(2));
+  $newOrigin: calc(($width - $height) / (2 * sqrt(2)));
   $rotateTL: -45deg;
   $rotateTR: 45deg;
 
@@ -224,8 +224,8 @@ p {
     right: 0;
 
     &::before {
-      top: $newOrigin - ($height / 2);
-      right: $newOrigin - ($width / 2);
+      top: $newOrigin - calc($height / 2);
+      right: $newOrigin - calc($width / 2);
       -webkit-transform: rotate($rotateTR);
       -moz-transform: rotate($rotateTR);
       -ms-transform: rotate($rotateTR);
@@ -239,8 +239,8 @@ p {
     left: 0;
 
     &:before {
-      top: $newOrigin - ($height / 2);
-      left: $newOrigin - ($width / 2);
+      top: $newOrigin - calc($height / 2);
+      left: $newOrigin - calc($width / 2);
       -webkit-transform: rotate($rotateTL);
       -moz-transform: rotate($rotateTL);
       -ms-transform: rotate($rotateTL);
@@ -254,7 +254,7 @@ p {
   $width: 140px;
   $height: 24px;
   $containerSide: $width;
-  $newOrigin: ($width - $height) / (2 * sqrt(2));
+  $newOrigin: calc(($width - $height) / (2 * sqrt(2)));
   $rotateTL: -45deg;
   $rotateTR: 45deg;
 
@@ -284,8 +284,8 @@ p {
     right: 0;
 
     &::before {
-      top: $newOrigin - ($height / 2);
-      right: $newOrigin - ($width / 2);
+      top: $newOrigin - calc($height / 2);
+      right: $newOrigin - calc($width / 2);
       -webkit-transform: rotate($rotateTR);
       -moz-transform: rotate($rotateTR);
       -ms-transform: rotate($rotateTR);
@@ -299,8 +299,8 @@ p {
     left: 0;
 
     &:before {
-      top: $newOrigin - ($height / 2);
-      left: $newOrigin - ($width / 2);
+      top: $newOrigin - calc($height / 2);
+      left: $newOrigin - calc($width / 2);
       -webkit-transform: rotate($rotateTL);
       -moz-transform: rotate($rotateTL);
       -ms-transform: rotate($rotateTL);
