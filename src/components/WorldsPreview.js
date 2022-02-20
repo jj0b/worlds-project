@@ -84,18 +84,50 @@ function WorldsPreview(props) {
   function renderWorlds() {
     if (imageURI) {
       return (
-        <div style={{ position: 'relative' }}>
-          <img
-            alt="Rendered Worlds"
-            src={`${imageURI}`}
-            className="WorldsImage"
-          />
-          {renderBadge()}
-        </div>
+        <>
+          <div style={{ position: 'relative' }}>
+            <img
+              alt="Rendered Worlds"
+              src={`${imageURI}`}
+              className="WorldsImage"
+            />
+            {renderBadge()}
+          </div>
+          <div className="Controls">
+            <button className="NavButton" onClick={showPrevious}>
+              &#x3c;
+            </button>
+            <input
+              className="Input"
+              onChange={(e) => setTokenId(parseInt(e.target.value) || '')}
+              value={tokenId}
+            />
+            <button className="NavButton" onClick={showNext}>
+              &#x3e;
+            </button>
+          </div>
+          <button className="ClaimButton" onClick={claim}>
+            Claim
+          </button>
+        </>
       );
-    } else {
-      return <div className="WorldsImage" />;
     }
+
+    if (typeof window.ethereum !== 'undefined') {
+      return (
+        <>
+          <button className="ConnectButton" onClick={displaySystem}>
+            Connect
+          </button>
+        </>
+      );
+    }
+
+    return (
+      <div className="Warning">
+        <p>Connect an Ethereum wallet to your browser to view Worlds.</p>
+      </div>
+    );
   }
 
   function showNext() {
@@ -110,27 +142,7 @@ function WorldsPreview(props) {
     }
   }
 
-  return (
-    <div className="WorldsPreview">
-      {renderWorlds()}
-      <div className="Controls">
-        <button className="NavButton" onClick={showPrevious}>
-          &#x3c;
-        </button>
-        <input
-          className="Input"
-          onChange={(e) => setTokenId(parseInt(e.target.value) || '')}
-          value={tokenId}
-        />
-        <button className="NavButton" onClick={showNext}>
-          &#x3e;
-        </button>
-      </div>
-      <button className="ClaimButton" onClick={claim}>
-        Claim
-      </button>
-    </div>
-  );
+  return <div className="WorldsPreview">{renderWorlds()}</div>;
 }
 
 export default WorldsPreview;

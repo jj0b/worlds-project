@@ -116,6 +116,24 @@ h2 {
   border-color: #1f2833;
 }
 
+.ConnectButton {
+  background-color: #1f2833;
+  color: white;
+  font-size: 20px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  margin: 20px 0px;
+  cursor: pointer;
+  border-style: solid;
+  border-color: white;
+}
+
+.Connectutton:active {
+  background-color: #45a29e;
+  color: #1f2833;
+  border-color: #1f2833;
+}
+
 .NavButton {
   background-color: #1f2833;
   color: white;
@@ -132,6 +150,12 @@ h2 {
   background-color: #45a29e;
   color: #1f2833;
   border-color: #1f2833;
+}
+
+.Warning {
+  color: red;
+  font-weight: bold;
+  padding-bottom: 20px;
 }
 
 @media (hover: hover) and (pointer: fine) {
